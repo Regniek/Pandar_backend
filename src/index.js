@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use('/', require('./components/users/routes'))
 app.use('/', require('./components/activities/routes'))
 app.use('/', require('./components/touristic-sites/routes'))
+app.use('/', require('./routes/auth'))
 
 // Server
 const server = app.listen(config.port, () => {

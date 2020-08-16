@@ -32,7 +32,8 @@ usersController.getOneUser = async (req, res) => {
 usersController.postUser = async (req, res) => {
   try {
     const user = new Users({
-      username: req.body.username,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       password: req.body.password,
       email: req.body.email,
       country: req.body.country,
@@ -52,7 +53,8 @@ usersController.postUser = async (req, res) => {
 usersController.updateUser = async (req, res, next) => {
   try {
     const user = {
-      username: req.body.username,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       password: req.body.password,
       email: req.body.email,
       country: req.body.country,
