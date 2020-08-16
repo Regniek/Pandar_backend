@@ -1,88 +1,81 @@
-const mongoose = require('mongoose')
 const Activities = require('./model')
 const activitiesController = {}
 
-activitiesController.getActivities = async (req, res) => {
+activitiesController.getActivities = async (req, res, next) => {
   try {
     const activities = await Activities.find()
-    res.json(activities)
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
+    res.json({
+      status: 200,
+      message: 'Activities listed',
+      activities: activities
     })
+  } catch (error) {
+    next(error)
   }
 }
 
-activitiesController.getOneActivity = async (req, res) => {
+activitiesController.getOneActivity = async (req, res, next) => {
   try {
-    const activities = await Activities.findById(req.params._id)
-    res.json(activities)
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
+    const activity = await Activities.findById(req.params.id)
+    res.json({
+      status: 200,
+      message: 'Activity listed',
+      activities: activity
     })
+  } catch (error) {
+    next(error)
   }
 }
 
 
-activitiesController.postActivity = async (req, res) => {
+activitiesController.postActivity = async (req, res, next) => {
   try {
     const activity = new Activities({
       activity_name: req.body.activity_name,
       price: req.body.price,
       description: req.body.description,
-      id_turistic_site: req.body.id_turistic_site,
-      city: req.body.city,
-
+      _id_turistic_site: req.body._id_turistic_site
     });
     await activity.save();
     res.json({
       status: 201,
-      body: activity
-
-    });
+      message: 'Activity created',
+      activities: activity
+    })
 
   } catch (error) {
-    res.json({
-      error: error.message
-    })
+    next(error)
   }
 }
 
-activitiesController.updateActivity = async (req, res) => {
+activitiesController.updateActivity = async (req, res, next) => {
   try {
     const activity = {
       activity_name: req.body.activity_name,
       price: req.body.price,
       description: req.body.description,
-      id_turistic_site: req.body.id_turistic_site,
-      city: req.body.city,
+      _id_turistic_site: req.body.id_turistic_site
     }
-    await Activities.findByIdAndUpdate(req.params._id, {
-      $set: activity
-    },
-      {
-        new: true
-      }
-    );
+    await Activities.findByIdAndUpdate(req.params.id, { $set: activity }, { omitUndefined: true, new: true })
     res.json({
       status: 200,
+      message: 'Activity updated',
       body: activity
     })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 }
 
-activitiesController.deleteActivity = async (req, res) => {
+activitiesController.deleteActivity = async (req, res, next) => {
   try {
-    const activity = await Activities.findByIdAndDelete(req.params._id)
+    const activity = await Activities.findByIdAndDelete(req.params.id)
     res.json({
       status: 200,
-      body: `Actividad con id ${req.params._id} Eliminado`
+      message: `Activity ${req.params.id} deleted`
     })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 }
 

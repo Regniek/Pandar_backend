@@ -13,7 +13,7 @@ mongoose.connect(MONGO_URL, {
     useFindAndModify: false,
     useNewUrlParser: true, 
     useUnifiedTopology: true
-}).then(console.log('MongoDB Connected'))
-.catch(error => console.error('No se conecto a la base de datos' + error))
+}).then(console.log('Connection to MongoDB was successful'))
+.catch(error => console.error('There is a problem with the connection to MongoDB' + error))
 
 module.exports = mongoose
