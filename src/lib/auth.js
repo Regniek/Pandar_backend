@@ -28,8 +28,8 @@ passport.use(new LocalStrategy({
         } else {
           return cb(null, false, { message: 'sin email ni password' })
         }
-      }).catch(error => cb(err))
-
+      }).catch(error => cb(err)
+      )
   }
 ))
 
