@@ -1,29 +1,23 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const Usuarios = require('../models/usuarios');
+const Usuarios = require('../components/users/model');
 
 
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-const config = require('../config')
+const { config } = require('../config/index')
 
 passport.use(new LocalStrategy({
-  usernameField: 'username',
+  usernameField: 'email',
   passwordField: 'password'
 },
-  async function (username, password, cb) {
-
-
-
+  async function (email, password, cb) {
     return Usuarios.findOne({
-
-      username: username
-
+      email: email
     }).then(user => {
       if (user) {
-
         bcrypt.compare(password, user.password).then(result => {
           if (result) {
             return cb(null, user.toJSON(), { message: 'Logged In Successfully' });
@@ -33,7 +27,6 @@ passport.use(new LocalStrategy({
       } else {
         return cb(null, false, { message: 'Incorrect email or password.' });
       }
-
     }).catch(err => cb(err));
   }
 ));

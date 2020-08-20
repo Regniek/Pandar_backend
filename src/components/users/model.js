@@ -5,9 +5,14 @@ const Users = new Schema({
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     password: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
     country: { type: String, required: true },
     city: { type: String, required: true },
+    email: {
+        type: String,
+        required: true,
+        index: { unique: true },
+    }
+
 
 },
     {

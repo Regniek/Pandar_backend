@@ -1,9 +1,5 @@
-const mongoose = require('mongoose')
 const Users = require('./model')
-const moment = require('moment')
-const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt')
-const { config } = require('../../config/index')
 const usersController = {}
 
 usersController.getUsers = async (req, res) => {
@@ -32,13 +28,13 @@ usersController.getOneUser = async (req, res) => {
   }
 }
 
-
 usersController.postUser = async (req, res) => {
   try {
+    let password = await bcrypt.hash(req.body.password, 10)
     const user = new Users({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      password: req.body.password = bcrypt.hashSync(req.body.password, 10),
+      password: password,
       email: req.body.email,
       country: req.body.country,
       city: req.body.city
@@ -56,10 +52,11 @@ usersController.postUser = async (req, res) => {
 
 usersController.updateUser = async (req, res, next) => {
   try {
+    let password = await bcrypt.hash(req.body.password, 10)
     const user = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      password: req.body.password,
+      password: password,
       email: req.body.email,
       country: req.body.country,
       city: req.body.city
@@ -87,41 +84,7 @@ usersController.deleteUser = async (req, res) => {
   }
 }
 
-// Login
-const createToken = (user) => {
-  const payload = {
-    userId: user._id,
-    createdAt: moment().unix(),
-    expiresAt: moment().add(1, 'day').unix()
-  }
-  return jwt.encode(payload, config.tokenKey)
-}
 
-usersController.loginUser = async (req, res, next) => {
-  try {
-    const user = await Users.findOne({ email: req.body.email }).exec()
-    if(user === undefined){
-      res.json({
-        error: 'Error, email or password not found'
-      })
-    } else {
-      const equals = await bcrypt.compare(req.body.password, user.password)
-      if(!equals){
-        res.json({
-          error: 'Error, email or password not found'
-        })
-      } else {
-        res.json({
-          state: 200,
-          done: 'Login correct',
-          succesfull: createToken(user)
-        })
-      }
-    }
-  } catch (error) {
-    next(error)
-  }
-}
 
 usersController.getUserById = async (req, res) => {
   try {
