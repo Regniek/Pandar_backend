@@ -32,6 +32,7 @@ usersController.postUser = async (req, res) => {
   try {
     let password = await bcrypt.hash(req.body.password, 10)
     const user = new Users({
+      username: req.body.username,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       password: password,
@@ -54,6 +55,7 @@ usersController.updateUser = async (req, res, next) => {
   try {
     let password = await bcrypt.hash(req.body.password, 10)
     const user = {
+      username: req.body.username,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       password: password,
