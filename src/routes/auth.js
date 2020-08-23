@@ -44,7 +44,7 @@ router.post('/register', async (req, res) => {
       body: user
     });
   } catch (error) {
-    console.log(error)
+    console.log('Error' + error)
   }
 })
 
