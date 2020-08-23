@@ -11,9 +11,9 @@ const MONGO_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
 
 mongoose.connect(MONGO_URL, {
     useFindAndModify: false,
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(console.log('Connection to MongoDB was successful'))
-.catch(error => console.error('There is a problem with the connection to MongoDB' + error))
+    .catch(error => console.error('There is a problem with the connection to MongoDB' + error))
 
 module.exports = mongoose
