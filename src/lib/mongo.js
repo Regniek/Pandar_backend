@@ -9,8 +9,6 @@ const DB_NAME = encodeURIComponent(config.dbName)
 
 const MONGO_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
 
-console.log(MONGO_URL)
-
 mongoose.connect(MONGO_URL, {
     useFindAndModify: false,
     useNewUrlParser: true,
