@@ -3,6 +3,7 @@ const touristicSitesController = {}
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
+    console.log('ok')
     const sites = await touristicSites.find()
     res.json({
       status: 200,
@@ -97,6 +98,20 @@ touristicSitesController.deleteSite = async (req, res, next) => {
     })
   } catch (error) {
     next(error)
+  }
+}
+
+touristicSitesController.searchByCategorie = async (req, res, next) => {
+  try {
+    console.log('bien')
+    const sites = await touristicSites.find({ category: req.query.category })
+    res.json({
+      count: sites.length,
+      body: sites,
+    })
+  } catch (error) {
+    next(error)
+    console.log(error)
   }
 }
 

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { ObjectId } = require('mongodb')
 const { Schema } = mongoose
 
 const TouristicSites = new Schema(
@@ -15,8 +14,8 @@ const TouristicSites = new Schema(
     average_price: { type: String, require: false },
     web: { type: String, require: false },
     description: { type: String, require: false },
-    category: [String],
-    activities: [String],
+    category: [],
+    activities: [],
   },
   {
     timestamps: true,
