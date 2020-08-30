@@ -1,5 +1,6 @@
 const touristicSites = require('./model')
 const touristicSitesController = {}
+const request = require('request')
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
@@ -89,7 +90,7 @@ touristicSitesController.updateSite = async (req, res, next) => {
 
 touristicSitesController.deleteSite = async (req, res, next) => {
   try {
-    const sites = await touristicSites.findById(req.params.id)
+    const sites = await touristicSites.findByIdAndRemove(req.params.id)
     res.json({
       status: 200,
       message: `Touristic site ${req.params.id} deleted`,
@@ -101,9 +102,13 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 
 touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
+    if( req.query.categories === 'Hotel'){
+      touristicSitesController.searchHotel(req, res)
+    }
+    req.query.city = req.query.city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
     if (req.query.categories === null || !req.query.categories){
       const sites = await touristicSites.find({
-      city: { $regex : req.query.city },
+      city: { $regex : req.query.city , $options : 'i'}
       })
       res.json({
         count: sites.length,
@@ -111,8 +116,8 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
       })
     }else{
       const sites = await touristicSites.find({
-        categories: { $regex : req.query.categories },
-        $or: [{ city: { $regex : req.query.city }}],
+        categories: { $regex : req.query.categories, $options : 'i'    },
+        $or: [{ city: { $regex : req.query.city, $options : 'i'  }}],
       })
       res.json({
         count: sites.length,
@@ -125,5 +130,79 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
     console.log(error)
   }
 }
+
+
+touristicSitesController.searchHotel = async (req, res, next) => {
+  let location = req.query.city
+  console.log("Aqui estamos")
+
+  let option = {
+    method: 'GET',
+    url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
+    qs: {
+      location_id: '1',
+      limit: '1',
+      sort: 'relevance',
+      offset: '0',
+      lang: 'es_CO',
+      currency: 'USD',
+      units: 'km',
+      query: location,
+    },
+    headers: {
+      'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
+      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
+    },
+  }
+  request(option, function (error, response, body) {
+    if (error) throw new Error(error)
+    let data = JSON.parse(body)
+
+    let locationId = data.data[0].result_object.location_id
+    console.log(locationId,"llegue")
+
+    var today = new Date()
+        day = today.getDate() + 2
+        month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
+        year = today.getFullYear()
+        let date = `${year}-${month}-${day}`
+
+    let locationHotel = {
+      method: 'GET',
+      url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
+      qs: {
+        location_id: locationId,
+        pricesmin: '',
+        offset: '0',
+        pricesmax: '',
+        currency: 'USD',
+        limit: '3',
+        order: 'asc',
+        lang: 'es_CO',
+        sort: 'recommended',
+        checkin: date,
+        adults: '1',
+        rooms: '1',
+        nights: '1',
+      },
+      headers: {
+        'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
+        'x-rapidapi-key':
+          'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
+      },
+    }
+    
+    request(locationHotel, function (error, response, body) {
+      if (error) throw new Error(error)
+      const dataHotel = JSON.parse(body)
+      
+      res.json({
+        dataHotel: dataHotel
+      })
+  })
+})
+}
+
+
 
 module.exports = touristicSitesController

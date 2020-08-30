@@ -19,7 +19,6 @@ app.use(
 )
 app.use(
   '/',
-  passport.authenticate('jwt', { session: false }),
   require('./components/touristic-sites/routes')
 )
 app.use(
