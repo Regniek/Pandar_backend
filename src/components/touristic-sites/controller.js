@@ -103,8 +103,10 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 
 touristicSitesController.searchByCategorie = async (req, res, next) => {
   try {
-    console.log('bien')
-    const sites = await touristicSites.find({ category: req.query.category })
+    const sites = await touristicSites.find({
+      category: req.query.category,
+      $or: [{ city: req.query.city }],
+    })
     res.json({
       count: sites.length,
       body: sites,
