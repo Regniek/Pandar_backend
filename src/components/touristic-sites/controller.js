@@ -33,18 +33,17 @@ touristicSitesController.postSite = async (req, res, next) => {
   try {
     const site = new touristicSites({
       location_name: req.body.location_name,
-      type_location: req.body.type_location,
       country: req.body.country,
       city: req.body.city,
       latitude: req.body.latitude,
       length: req.body.length,
+      rating: req.body.rating,
       address: req.body.address,
-      phone: req.body.phone,
       average_price: req.body.average_price,
+      phone: req.body.phone,
       web: req.body.web,
-      description: req.body.description,
-      category: req.body.category,
-      activities: req.body.activities,
+      image: req.body.image,
+      categories: req.body.categories
     })
     await site.save()
     res.json({
@@ -61,18 +60,17 @@ touristicSitesController.updateSite = async (req, res, next) => {
   try {
     const site = {
       location_name: req.body.location_name,
-      type_location: req.body.type_location,
       country: req.body.country,
       city: req.body.city,
       latitude: req.body.latitude,
       length: req.body.length,
+      rating: req.body.rating,
       address: req.body.address,
-      phone: req.body.phone,
       average_price: req.body.average_price,
+      phone: req.body.phone,
       web: req.body.web,
-      description: req.body.description,
-      category: req.body.category,
-      activities: req.body.activities,
+      image: req.body.image,
+      categories: req.body.categories
     }
     await touristicSites.findByIdAndUpdate(
       req.params.id,
@@ -101,16 +99,27 @@ touristicSitesController.deleteSite = async (req, res, next) => {
   }
 }
 
-touristicSitesController.searchByCategorie = async (req, res, next) => {
+touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
-    const sites = await touristicSites.find({
-      category: req.query.category,
-      $or: [{ city: req.query.city }],
-    })
-    res.json({
-      count: sites.length,
-      body: sites,
-    })
+    if (req.query.categories === null || !req.query.categories){
+      const sites = await touristicSites.find({
+      city: { $regex : req.query.city },
+      })
+      res.json({
+        count: sites.length,
+        body: sites,
+      })
+    }else{
+      const sites = await touristicSites.find({
+        categories: { $regex : req.query.categories },
+        $or: [{ city: { $regex : req.query.city }}],
+      })
+      res.json({
+        count: sites.length,
+        body: sites,
+      })
+    }
+
   } catch (error) {
     next(error)
     console.log(error)

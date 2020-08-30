@@ -7,6 +7,6 @@ router.get('/touristic-site/:id', touristicSites.getOneSite)
 router.post('/touristic-site', touristicSites.postSite)
 router.patch('/touristic-site/:id', touristicSites.updateSite)
 router.delete('/touristic-site/:id', touristicSites.deleteSite)
-router.get('/search-site', touristicSites.searchByCategorie)
+router.get('/search-site', touristicSites.searchByCategories)
 
 module.exports = router
