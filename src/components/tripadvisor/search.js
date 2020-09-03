@@ -118,4 +118,3 @@ searchLocation.search = async (req, res) => {
 }
 
 module.exports = searchLocation
-//res.json({ body: JSON.parse(body) })
