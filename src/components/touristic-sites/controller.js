@@ -102,24 +102,27 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 
 touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
+    let city = req.query.city
     if (req.query.categories === null || !req.query.categories){
-      req.query.city = req.query.city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
+      city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
       const sites = await touristicSites.find({
-      city: { $regex : req.query.city , $options : 'i'}
+      city: { $regex : city , $options : 'i'}
       })
       res.json({
         count: sites.length,
         body: sites,
       })
     }else if (req.query.categories === 'Hotel'){
+      city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
     }else if (req.query.categories === 'Restaurante') {
+      city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
     }else{
-      req.query.city = req.query.city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
+      city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
       const sites = await touristicSites.find({
         categories: { $regex : req.query.categories, $options : 'i'    },
-        $or: [{ city: { $regex : req.query.city, $options : 'i'  }}],
+        $or: [{ city: { $regex : city, $options : 'i'  }}],
       })
       res.json({
         count: sites.length,
