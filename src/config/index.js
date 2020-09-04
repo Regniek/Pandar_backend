@@ -10,7 +10,4 @@ const config = {
   jwtToken: process.env.TOKEN_KEY || 'TokenAuth',
 }
 
-
-
-
 module.exports = { config }
