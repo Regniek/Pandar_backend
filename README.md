@@ -2,47 +2,69 @@
 Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que tiene como objetivo brindar las rutas, datos y demas medios de conexión para lograr el funcionamiento del Frontend de la aplicación.
 
 ## Índice
-* [ Documentación ](##Documentación)
-  - [ Tecnologías ](###Tecnologías)
-  - [ Equipo Backend y Data ](###Equipo-Backend-y-Data)
-  - [ Enlaces de Interés ](###Enlaces-de-Interés)
-* [ Pasos para Colaborar ](##Pasos-para-Colaborar)
-* [ Maneras de Consumir el Servicio ](##Maneras-de-Consumir-el-Servicio)
-  - [ Search Site](###Search-Site)
-  - [ Login ](###Login)
-  - [ Touristic Sites ](###Touristic-Sites)
+* [ Documentación ](#Documentación)
+  - [ Tecnologías ](#Tecnologías)
+  - [ Equipo Backend y Data ](#Equipo-Backend-y-Data)
+  - [ Enlaces de Interés ](#Enlaces-de-Interés)
+* [ Pasos para Colaborar ](#Pasos-para-Colaborar)
+* [ Maneras de Consumir el Servicio ](#Maneras-de-Consumir-el-Servicio)
+  - [ Search Site ](#Search-Site)
+    - [ GET Search-Site ](#•-GET-Search-Site)
+    - [ GET Search-Site (TripAdvisor) ](#•-GET-Search-Site-(TripAdvisor))
+  - [ Login ](#Login)
+    - [ POST Register ](#•-POST-Register)
+    - [ POST Login ](#•-POST-Login)
+  - [ Touristic Sites ](#Touristic-Sites)
+    - [ GET Touristic-Sites ](#•-GET-Touristic-Sites)
+    - [ GET One Touristic-Site ](#•-GET-One-Touristic-Site)
+    - [ POST Touristic-Site ](#•-POST-Touristic-Site)
+    - [ PATCH Touristic-Site ](#•-PATCH-Touristic-Site)
+    - [ DELETE Touristic-Site ](#•-DELETE-Touristic-Site)
+  - [ Surveys ](#Surveys)
+    - [ GET Surveys ](#•-GET-Surveys)
+    - [ GET One Survey ](#•-GET-One-Survey)
+    - [ POST Survey ](#•-POST-Survey)
+    - [ PATCH Survey ](#•-PATCH-Survey)
+    - [ DELETE Survey ](#•-DELETE-Survey)
+  - [ Users ](#Users)
+    - [ GET Users ](#•-GET-Users)
+    - [ GET One User ](#•-GET-One-User)
+    - [ POST User ](#•-POST-User)
+    - [ PATCH User ](#•-PATCH-User)
+    - [ DELETE User ](#•-DELETE-User)
 
+## Documentación
 
 ### Tecnologías
 |Tecnología                                                             |Versión         | Vesión                       
 |:----------------------------------------------------------------------|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos.|
 |<img src="https://img.shields.io/badge/JWT-yellow">                    |^8.5.1         | Gran seguridad al momento de controlar las sesiones al usar payload, firma y secreto como medios de encriptación |
-|<img src="https://img.shields.io/badge/mongoose-darkred">              |^5.10          | Permite construir estructuras para los documentos al usar en MongoDB y realizar consultas de una forma más eficiente |
+|<img src="https://img.shields.io/badge/Mongoose-darkred">              |^5.10          | Permite construir estructuras para los documentos al usar en MongoDB y realizar consultas de una forma más eficiente |
 |<img src="https://img.shields.io/badge/Express.js-lightgrey">          |^4.17.1        | Metodos sencillos al crear servidores y generar rutas de comunicación|
 |<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | Permite tener una base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, ademas el uso de  documentos facilita la inserción de archivos tipo JSON.|
 
 
-### Equipo-Backend-y-Data
+### Equipo Backend y Data
 
 |Miembro            |Rol                 |Tareas            |
 |:------------------|:-------------------|:-----------------|
 |Adrian Gutierrez   |**Data Scientist**  | Desarrollo del algoritmo inteligente, Diagrama del algoritmo inteligente |
-|Ildebrando Mora    |**Backend**         | Desarrollo del sistema de sesiones, Conexión con API TripAdvisor, Construcción de rutas users, auth y search-site|
-|Juan Espitia       |**Backend**         | Creación de la estructura base del servidor, Mejora de la ruta search-site, Diagrama de Flujo|
-|Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo de rutas touristic-sites, Mejora de las |
+|Ildebrando Mora    |**Backend**         | Desarrollo del sistema de sesiones, Conexión con API TripAdvisor, Desarrollo CRUD Users, Construcción de rutas auth y search-site|
+|Juan Espitia       |**Backend**         | Creación de la estructura base del servidor, Desarrollo CRUD surveys,  Mejora de la ruta search-site, Diagrama de Flujo|
+|Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo CRUD touristic-sites, Implementación de busquedas API TripAdvisor a ruta search-site  |
 |Todos              |**Todos**           | Inserción de registros a la base de datos |
 
-### Enlaces-de-Interés
+### Enlaces de Interés
 
 |Nombre                  |Enlace|
 |:-----------------------|:------------|
 |Videos de las Reuniones |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l|
-|Diagrama de Flujo       |             |
-|Diagrama del Algoritmo  |             |
+|Diagrama de Flujo       |https://www.notion.so/Diagrama-de-Flujo-Backend-2836250100424aadadd74dd77455c411|
+|Diagrama del Algoritmo  |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270|
 |Collección Postman      |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
 
-## Pasos-para-Colaborar
+## Pasos para Colaborar
 1. Hacer fork del proyecto: al dar click al boton fork (ubicado en la parte superior derecha)
 2. Clonar el proyecto: `git clone https://gitlab.com/<Tu usuario>/backend-intellegent-tourism-system.git`
 3. Instalar las dependencias: `npm install` o usar `npm i`
@@ -51,11 +73,10 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 6. Subir los cambios al repositio creado con el fork: `git push origin <rama que se uso>`
 7. Crear un merge request al proyecto original.
 
-## Maneras-de-Consumir-el-Servicio
+## Maneras de Consumir el Servicio
 
 ### Search-Site
-- **GET Search-Site**
-
+#### • GET Search-Site
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
@@ -85,7 +106,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-- **GET Search-Site (TripAdvisor)**
+#### • GET Search-Site (TripAdvisor)
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Hotel`, `Restaurante`
@@ -186,7 +207,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ### Login
 
-- **POST Register**
+#### • POST Register
 
 - URL: `http://localhost:4000/register`
 
@@ -221,7 +242,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-- **POST Login**
+#### • POST Login
 
 - URL: `http://localhost:4000/login`
 
@@ -253,7 +274,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ### Touristic-Sites
 
-- **GET Touristic-Sites**
+#### • GET Touristic-Sites
 
 - URL: `http://localhost:4000/touristic-site`
 
@@ -301,7 +322,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-- **GET Touristic-Site**
+#### • GET One Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
@@ -330,7 +351,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     }
 ```
 
-- **POST Touristic-Site**
+#### • POST Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site`
 - Token de Autorización: Requerido
@@ -355,7 +376,35 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-- **PATCH Touristic-Site**
+> Response
+```
+{
+    "status": 201,
+    "message": "Touristic site created",
+    "body": {
+        "categories": [
+            "Cultura"
+        ],
+        "_id": "5f5244cc89e724361cca0f28",
+        "location_name": "Museo Nacional de la Muerte",
+        "country": "México",
+        "city": "Aguascalientes",
+        "latitude": "21.883992",
+        "length": "-102.295501",
+        "rating": 4.5,
+        "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
+        "average_price": "$20",
+        "phone": "+524499107400",
+        "web": "http://museonacionaldelamuerte.uaa.mx/",
+        "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
+        "createdAt": "2020-09-04T13:44:44.764Z",
+        "updatedAt": "2020-09-04T13:44:44.764Z",
+        "__v": 0
+    }
+}
+```
+
+#### • PATCH Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
@@ -368,7 +417,18 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-- **DELETE Touristic-Site**
+> Response
+```
+{
+    "status": 200,
+    "message": "Touristic site updated",
+    "body": {
+        "rating": 5
+    }
+}
+```
+
+#### • DELETE Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
@@ -382,15 +442,323 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
+### Surveys
+
+#### • GET Surveys
+
+- URL: `http://localhost:4000/survey`
+
+> Response
+```
+{
+    "status": 200,
+    "body": [
+        {
+            "categories": [
+                "playa",
+                "bares y discotecas",
+                "ecoparques"
+            ],
+            "_id": "5f519aed665b2206fea231f1",
+            "user": {
+                "_id": "5f3a001e747bf745042b59b7",
+                "first_name": "Maria",
+                "last_name": "Sanchez",
+                "password": "$2b$10$TiCLZ9cZcl0GWn/xKTRIRuQA.T44ZVjHTztbSLHwfI1aWitaNFcIe",
+                "email": "maria@gmail.com",
+                "country": "Colombia",
+                "city": "Cali",
+                "createdAt": "2020-08-17T03:57:18.686Z",
+                "updatedAt": "2020-08-17T03:57:18.686Z",
+                "__v": 0
+            },
+            "country": "Mexico",
+            "budget": 200,
+            "createdAt": "2020-09-04T01:39:57.519Z",
+            "updatedAt": "2020-09-04T01:39:57.519Z",
+            "__v": 0
+        },
+        {
+            "categories": [
+                "playa",
+                "zonas arqueologicas",
+                "cultura"
+            ],
+            "_id": "5f5241fa89e724361cca0f27",
+            "user": {
+                "_id": "5f4291f24f239a3986e753f6",
+                "email": "Carlossanchez@gmail.co",
+                "password": "$2b$10$seklywowo4q7VbKRAvxSd.16GCsLUodLRi/NZxMJGTZ7C/zBpdN6m",
+                "first_name": "Carlos",
+                "last_name": "Sanchez",
+                "country": "mexico",
+                "city": "puebla",
+                "createdAt": "2020-08-23T15:57:38.677Z",
+                "updatedAt": "2020-08-23T15:57:38.677Z",
+                "__v": 0
+            },
+            "country": "Colombia",
+            "budget": 50,
+            "createdAt": "2020-09-04T13:32:42.168Z",
+            "updatedAt": "2020-09-04T13:32:42.168Z",
+            "__v": 0
+        }
+    ]
+}
+```
+
+#### • GET One Survey
+
+- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- Ejemplo: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
+
+> Response
+```
+{
+    "status": 200,
+    "body": {
+        "categories": [
+            "playa",
+            "zonas arqueologicas",
+            "cultura"
+        ],
+        "_id": "5f5241fa89e724361cca0f27",
+        "user": {
+            "_id": "5f4291f24f239a3986e753f6",
+            "email": "Carlossanchez@gmail.co",
+            "password": "$2b$10$seklywowo4q7VbKRAvxSd.16GCsLUodLRi/NZxMJGTZ7C/zBpdN6m",
+            "first_name": "Carlos",
+            "last_name": "Sanchez",
+            "country": "mexico",
+            "city": "puebla",
+            "createdAt": "2020-08-23T15:57:38.677Z",
+            "updatedAt": "2020-08-23T15:57:38.677Z",
+            "__v": 0
+        },
+        "country": "Colombia",
+        "budget": 50,
+        "createdAt": "2020-09-04T13:32:42.168Z",
+        "updatedAt": "2020-09-04T13:32:42.168Z",
+        "__v": 0
+    }
+}
+```
+
+#### • POST Survey
+
+- URL: `http://localhost:4000/survey`
+- Token de Autorización: Requerido
+
+> Body
+```
+{
+    "user": "5f4291f24f239a3986e753f6",
+    "country":"Colombia",
+    "budget": 50,
+    "categories":["playa","zonas arqueologicas","cultura"]
+}
+```
+
+> Response
+```
+{
+    "status": 201,
+    "body": {
+        "categories": [
+            "playa",
+            "zonas arqueologicas",
+            "cultura"
+        ],
+        "_id": "5f5241fa89e724361cca0f27",
+        "user": "5f4291f24f239a3986e753f6",
+        "country": "Colombia",
+        "budget": 50,
+        "createdAt": "2020-09-04T13:32:42.168Z",
+        "updatedAt": "2020-09-04T13:32:42.168Z",
+        "__v": 0
+    }
+}
+```
+
+#### • PATCH Survey
+
+- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- Ejemplo: `http://localhost:4000/survey/5f51b3684757c94650678303`
+- Token de Autorización: Requerido
+
+> Body
+```
+{
+    "budget": 300
+}
+```
+> Response
+```
+{
+    "status": 200,
+    "message": "Survey updated",
+    "body": {
+        "budget": 300
+    }
+}
+```
+
+#### • DELETE Survey
+
+- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- Ejemplo: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
+- Token de Autorización: Requerido
+
+> Response
+```
+{
+    "status": 200,
+    "message": "Survey 5f5240ef89e724361cca0f26 deleted"
+}
+```
+
 ### Users
 
-#### GET Users
+#### • GET Users
 
-#### GET User
+- URL: `http://localhost:4000/user`
 
-#### POST User
+> Response
+```
 
-#### UPDATE User
+{
+    "status": 200,
+    "message": "Users listed",
+    "body": [
+        {
+            "_id": "5f3a001e747bf745042b59b7",
+            "first_name": "Maria",
+            "last_name": "Sanchez",
+            "password": "$2b$10$TiCLZ9cZcl0GWn/xKTRIRuQA.T44ZVjHTztbSLHwfI1aWitaNFcIe",
+            "email": "maria@gmail.com",
+            "country": "Colombia",
+            "city": "Cali",
+            "createdAt": "2020-08-17T03:57:18.686Z",
+            "updatedAt": "2020-08-17T03:57:18.686Z",
+            "__v": 0
+        },
+        {
+            "_id": "5f3ea8784eb5b31c7cc8a818",
+            "email": "juan@juan.co",
+            "password": "$2b$10$aRItGAo/qqH8hyDsc/CNp.DqU3YuvAckX5OWUiasH/skSmEO4aznW",
+            "first_name": "juan",
+            "last_name": "Gomez",
+            "country": "Colombia",
+            "city": "Bogota",
+            "createdAt": "2020-08-20T16:44:40.956Z",
+            "updatedAt": "2020-08-20T16:44:40.956Z",
+            "__v": 0
+        }
+    ]
+}
 
-#### DELETE User
+```
+
+#### • GET One User
+
+- URL: `http://localhost:4000/user/<_id del usuario>`
+- Ejemplo: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
+
+> Response
+```
+{
+    "status": 200,
+    "message": "User listed",
+    "body": {
+        "_id": "5f3a001e747bf745042b59b7",
+        "first_name": "Maria",
+        "last_name": "Sanchez",
+        "password": "$2b$10$TiCLZ9cZcl0GWn/xKTRIRuQA.T44ZVjHTztbSLHwfI1aWitaNFcIe",
+        "email": "maria@gmail.com",
+        "country": "Colombia",
+        "city": "Cali",
+        "createdAt": "2020-08-17T03:57:18.686Z",
+        "updatedAt": "2020-08-17T03:57:18.686Z",
+        "__v": 0
+    }
+}
+```
+
+#### • POST User
+
+- URL: `http://localhost:4000/user`
+- Token de Autorización: Requerido
+
+> Body
+```
+{
+    "first_name": "Sergio",
+    "last_name": "Rodriguez",
+    "password": "123456",
+    "email": "sergior@gmail.com",
+    "country": "Peru",
+    "city": "Lima"
+}
+```
+
+> Response
+```
+{
+    "status": 201,
+    "message": "User created",
+    "body": {
+        "_id": "5f5246a589e724361cca0f29",
+        "first_name": "Sergio",
+        "last_name": "Rodriguez",
+        "password": "$2b$10$N3Lo7T7lHOKCn0esdlphs..NDC20g6vWa5WbuG.tNTqupDQVKX/Cm",
+        "email": "sergior@gmail.com",
+        "country": "Peru",
+        "city": "Lima",
+        "createdAt": "2020-09-04T13:52:37.936Z",
+        "updatedAt": "2020-09-04T13:52:37.936Z",
+        "__v": 0
+    }
+}
+```
+
+#### • PATCH User #####
+
+- URL: `http://localhost:4000/user/< _id del usuario >`
+- Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Token de Autorización: Requerido
+
+> Body
+```
+{
+    "email": "rogriduez@gmail.com",
+    "city": "Cusco",
+    "password": "123456"
+}
+```
+> Response
+```
+{
+    "status": 200,
+    "message": "User 5f5249b6f7b29249c8b470bc updated",
+    "body": {
+        "password": "$2b$10$oKyVkfhHZo9t8oGpu6g25.m4ke8F0dwdgHEcIl0fNx6cWjBMkbq66",
+        "email": "rogriduez@gmail.com",
+        "city": "Cusco"
+    }
+}
+```
+
+#### • DELETE User
+
+- URL: `http://localhost:4000/user/<_id del usuario>`
+- Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Token de Autorización: Requerido
+
+> Response
+```
+{
+    "status": 200,
+    "message": "User 5f5246a589e724361cca0f29 deleted"
+}
+```
 
