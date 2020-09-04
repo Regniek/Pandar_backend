@@ -15,22 +15,14 @@ app.use(morgan('dev'))
 app.use('/', require('./routes/auth'))
 app.use(
   '/',
-  passport.authenticate('jwt', { session: false }),
   require('./components/users/routes')
 )
 app.use(
   '/',
-  passport.authenticate('jwt', { session: false }),
-  require('./components/activities/routes')
-)
-app.use(
-  '/',
-  passport.authenticate('jwt', { session: false }),
   require('./components/touristic-sites/routes')
 )
 app.use(
   '/',
-  passport.authenticate('jwt', { session: false }),
   require('./components/tripadvisor/routes')
 )
 app.use(
