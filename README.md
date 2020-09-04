@@ -1,37 +1,13 @@
 # Backend-Intellegent-Tourism-System
+
+Índice
+---------
+
+[[_TOC_]]
+
+## Descripción
 Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que tiene como objetivo brindar las rutas, datos y demas medios de conexión para lograr el funcionamiento del Frontend de la aplicación.
 
-## Índice
-* [ Documentación ](#Documentación)
-  - [ Tecnologías ](#Tecnologías)
-  - [ Equipo Backend y Data ](#Equipo-Backend-y-Data)
-  - [ Enlaces de Interés ](#Enlaces-de-Interés)
-* [ Pasos para Colaborar ](#Pasos-para-Colaborar)
-* [ Maneras de Consumir el Servicio ](#Maneras-de-Consumir-el-Servicio)
-  - [ Search Site ](#Search-Site)
-    - [ GET Search-Site ](#•-GET-Search-Site)
-    - [ GET Search-Site (TripAdvisor) ](#•-GET-Search-Site-(TripAdvisor))
-  - [ Login ](#Login)
-    - [ POST Register ](#•-POST-Register)
-    - [ POST Login ](#•-POST-Login)
-  - [ Touristic Sites ](#Touristic-Sites)
-    - [ GET Touristic-Sites ](#•-GET-Touristic-Sites)
-    - [ GET One Touristic-Site ](#•-GET-One-Touristic-Site)
-    - [ POST Touristic-Site ](#•-POST-Touristic-Site)
-    - [ PATCH Touristic-Site ](#•-PATCH-Touristic-Site)
-    - [ DELETE Touristic-Site ](#•-DELETE-Touristic-Site)
-  - [ Surveys ](#Surveys)
-    - [ GET Surveys ](#•-GET-Surveys)
-    - [ GET One Survey ](#•-GET-One-Survey)
-    - [ POST Survey ](#•-POST-Survey)
-    - [ PATCH Survey ](#•-PATCH-Survey)
-    - [ DELETE Survey ](#•-DELETE-Survey)
-  - [ Users ](#Users)
-    - [ GET Users ](#•-GET-Users)
-    - [ GET One User ](#•-GET-One-User)
-    - [ POST User ](#•-POST-User)
-    - [ PATCH User ](#•-PATCH-User)
-    - [ DELETE User ](#•-DELETE-User)
 
 ## Documentación
 
