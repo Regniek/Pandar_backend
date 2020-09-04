@@ -112,10 +112,10 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
         count: sites.length,
         body: sites,
       })
-    }else if (req.query.categories === 'Hotel'){
+    }else if (req.query.categories === 'Hotel' || req.query.categories === 'hotel'){
       city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
-    }else if (req.query.categories === 'Restaurante') {
+    }else if (req.query.categories === 'Restaurante' || req.query.categories === 'restaurante') {
       city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
     }else{
