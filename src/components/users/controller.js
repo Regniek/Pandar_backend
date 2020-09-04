@@ -64,7 +64,7 @@ usersController.updateUser = async (req, res, next) => {
     await Users.findByIdAndUpdate(
       req.params.id,
       { $set: user },
-      { omitUndefined: true, new: true }
+      { omitUndefined: true, upsert: true }
     );
     res.json({
       status: 200,
