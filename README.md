@@ -8,9 +8,9 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |:----------------------------------------------------------------------|---------|
 |<img src="https://img.shields.io/badge/Node.js^11.1.0-darkgreen">             | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos.|
 |<img src="https://img.shields.io/badge/jsonwebtoken-^8.5.1-yellow">    | Gran seguridad al momento de controlar las sesiones al usar payload, firma y secreto como medios de encriptación |
-|<img src="https://img.shields.io/badge/mongoose-^5.10-darkred">         | Permite construir estructuras para los documentos a usar en MongoDB e realizar consultas de un forma más eficiente |
+|<img src="https://img.shields.io/badge/mongoose-^5.10-darkred">         | Permite construir estructuras para los documentos al usar en MongoDB y realizar consultas de una forma más eficiente |
 |<img src="https://img.shields.io/badge/Express.js-^4.17.1-lightgrey">   | Facilidad en desarrollo de servidores y generacioón de rutas|
-|<img src="https://img.shields.io/badge/MongoDB-dark">                  || 
+|<img src="https://img.shields.io/badge/MongoDB-dark">                  | Permit tener un base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, al uso de  documentos facilit la inserción de archivos tipo JSON.|
 
 
 ### Equipo Backend y Data
@@ -20,7 +20,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |Adrian Gutierrez   |**Data Scientist**  | Desarrollo algoritmo inteligente, Diagrama del algoritmo inteligent |
 |Ildebrando Mora    |**Backend**         | Desarrollo del sistema de sesiones, Conexión con API TripAdvisor, Construcción de rutas users, auth y search-site|
 |Juan Espitia       |**Backend**         | Creación de la estructura base del servidor, Mejora de la ruta search-site, Diagrama de Flujo|
-|Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo de turas touristic-sites  |
+|Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo de rutas touristic-sites  |
 |Todos              | **Todos**          | Inserción de registros a la base de datos |
 
 ### Enlaces de Interes
@@ -29,6 +29,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |Videos de las Reuniones |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l|
 |Diagrama de Flujo       |             |
 |Diagrama de Algoritmo   |             |
+|Collección Postman      |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
 
 ## Pasos para Colaborar
 1. Hacer fork del proyecto: al dar click al boton fork (ubicado en la parte superior derecha)
@@ -41,9 +42,11 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ## Maneras de Consumir el Servicio
 
-### Search-Site
+### Search-Site 
 
 #### GET Search-Site
+
+http://localhost:4000/search-site?city=[ciudad]&categories=[categoria]
 
 #### GET Search-Site (TripAdvisor)
 

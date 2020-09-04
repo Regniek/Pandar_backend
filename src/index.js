@@ -27,6 +27,10 @@ app.use(
 )
 app.use(
   '/',
+  require('./components/survey/routes')
+)
+app.use(
+  '/',
   passport.authenticate('jwt', { session: false }),
   require('./components/categories/routes')
 )

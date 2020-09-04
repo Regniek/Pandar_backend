@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const users = require('./controller')
-const middleware = require('./middleware')
 const passport = require('passport')
 require('../../lib/passport')
 
