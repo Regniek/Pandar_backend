@@ -1,11 +1,11 @@
 # Backend-Intellegent-Tourism-System
 
-Índice| Index
+Índice | Index
 ---------
 
 [[_TOC_]]
 
-## Español
+## **Español**
 
 ### Descripción
 Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que tiene como objetivo brindar las rutas, datos y demas medios de conexión para lograr el funcionamiento del Frontend de la aplicación.
@@ -14,13 +14,13 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ### Documentación
 
 #### Tecnologías
-|Tecnología                                                             |Versión         | Vesión                       
+|Tecnología                                                             |Versión        | Beneficios al Proyecto                     
 |:----------------------------------------------------------------------|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos.|
+|<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos |
 |<img src="https://img.shields.io/badge/JWT-yellow">                    |^8.5.1         | Gran seguridad al momento de controlar las sesiones al usar payload, firma y secreto como medios de encriptación |
 |<img src="https://img.shields.io/badge/Mongoose-darkred">              |^5.10          | Permite construir estructuras para los documentos al usar en MongoDB y realizar consultas de una forma más eficiente |
-|<img src="https://img.shields.io/badge/Express.js-lightgrey">          |^4.17.1        | Metodos sencillos al crear servidores y generar rutas de comunicación|
-|<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | Permite tener una base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, ademas el uso de  documentos facilita la inserción de archivos tipo JSON.|
+|<img src="https://img.shields.io/badge/Express.js-lightgrey">          |^4.17.1        | Metodos sencillos al crear servidores y generar rutas de comunicación |
+|<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | Permite tener una base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, ademas el uso de  documentos facilita el manejo de datos estructurados |
 
 
 #### Equipo Backend y Data
@@ -740,33 +740,33 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-## English
+## **English**
 
-### Descripción
-Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que tiene como objetivo brindar las rutas, datos y demas medios de conexión para lograr el funcionamiento del Frontend de la aplicación.
+### Description
+Background structure of the project intelligent system for tourists (Pandar) that aims to provide the routes, data and other means of connection to achieve the functionality of the Frontend of the application.
 
 
-### Documentación
+### Documentation
 
-#### Tecnologías
-|Tecnología                                                             |Versión         | Vesión                       
+#### Technologies
+|Technology                                                             |Version        | Benefits to the project                       
 |:----------------------------------------------------------------------|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos.|
-|<img src="https://img.shields.io/badge/JWT-yellow">                    |^8.5.1         | Gran seguridad al momento de controlar las sesiones al usar payload, firma y secreto como medios de encriptación |
-|<img src="https://img.shields.io/badge/Mongoose-darkred">              |^5.10          | Permite construir estructuras para los documentos al usar en MongoDB y realizar consultas de una forma más eficiente |
-|<img src="https://img.shields.io/badge/Express.js-lightgrey">          |^4.17.1        | Metodos sencillos al crear servidores y generar rutas de comunicación|
-|<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | Permite tener una base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, ademas el uso de  documentos facilita la inserción de archivos tipo JSON.|
+|<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Greater overall mastery in the team, allows us to use JavaScript to build the backend of a web application and huge community to receive support in the projects |
+|<img src="https://img.shields.io/badge/JWT-yellow">                    |^8.5.1         | High security when controlling sessions by using payload, signature and secrecy as means of encryption |
+|<img src="https://img.shields.io/badge/Mongoose-darkred">              |^5.10          | Allows to build structures for documents when used in MongoDB and to perform queries more efficiently |
+|<img src="https://img.shields.io/badge/Express.js-lightgrey">          |^4.17.1        | Simple methods when creating servers and generating communication paths |
+|<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | It allows to have a NoSQL database for free online, with possibility of public and private configuration allowing a better development at team level, in addition the use of documents facilitates the handling of structured data |
 
 
-#### Equipo Backend y Data
+#### Backend and Data Team
 
-|Miembro            |Rol                 |Tareas            |
+|Member          |Role                   |Tasks           |
 |:------------------|:-------------------|:-----------------|
-|Adrian Gutierrez   |**Data Scientist**  | Desarrollo del algoritmo inteligente, Diagrama del algoritmo inteligente |
-|Ildebrando Mora    |**Backend**         | Desarrollo del sistema de sesiones, Conexión con API TripAdvisor, Desarrollo CRUD Users, Construcción de rutas auth y search-site|
+|Adrian Gutierrez   |**Data Scientist**  | Intelligent algorithm development, Intelligent algorithm diagram |
+|Ildebrando Mora    |**Backend**         | Session system development, TripAdvisor API connection, CRUD Users development, auth and search-site routes construction |
 |Juan Espitia       |**Backend**         | Creación de la estructura base del servidor, Desarrollo CRUD surveys,  Mejora de la ruta search-site, Diagrama de Flujo|
 |Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo CRUD touristic-sites, Implementación de busquedas API TripAdvisor a ruta search-site  |
-|Todos              |**Todos**           | Inserción de registros a la base de datos |
+|Todos              |**Everyone**        | Inserción de registros a la base de datos |
 
 #### Enlaces de Interés
 
