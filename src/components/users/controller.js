@@ -1,80 +1,104 @@
-const mongoose = require('mongoose')
 const Users = require('./model')
+const bcrypt = require('bcrypt')
 const usersController = {}
 
-usersController.getUsers = async (req, res) => {
+usersController.getUsers = async (req, res, next) => {
   try {
     const users = await Users.find()
-    res.json(users)
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
+    res.json({
+      status: 200,
+      message: 'Users listed',
+      body: users
     })
+  } catch (error) {
+    next(error)
   }
 }
 
-usersController.getOneUser = async (req, res) => {
+usersController.getOneUser = async (req, res, next) => {
   try {
-    const user = await Users.findById(req.params._id)
-    res.json(user)
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
+    const user = await Users.findById(req.params.id)
+    res.json({
+      status: 200,
+      message: 'User listed',
+      body: user
     })
+  } catch (error) {
+    next(error)
   }
 }
 
-
-usersController.postUser = async (req, res) => {
+usersController.postUser = async (req, res, next) => {
   try {
+    const password = await bcrypt.hash(req.body.password, 10)
     const user = new Users({
-      username: req.body.username,
-      email: req.body.email
-    });
-    await user.save();
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      password: password,
+      email: req.body.email,
+      country: req.body.country,
+      city: req.body.city
+    })
+    await user.save()
     res.json({
       status: 201,
+      message: 'User created',
       body: user
-
-    });
-
+    })
   } catch (error) {
+    next(error)
   }
 }
 
-usersController.updateUser = async (req, res) => {
+usersController.updateUser = async (req, res, next) => {
   try {
+    const password = await bcrypt.hash(req.body.password, 10)
     const user = {
-      username: req.body.username,
-      email: req.body.email
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      password: password,
+      email: req.body.email,
+      country: req.body.country,
+      city: req.body.city
     }
-    await Users.findByIdAndUpdate(req.params._id, {
-      $set: user
-    },
-      {
-        new: true
-      }
-    );
+    await Users.findByIdAndUpdate(
+      req.params.id,
+      { $set: user },
+      { omitUndefined: true, upsert: true }
+    )
     res.json({
       status: 200,
+      message: `User ${req.params.id} updated`,
       body: user
     })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 }
 
-usersController.deleteUser = async (req, res) => {
+usersController.deleteUser = async (req, res, next) => {
   try {
-    const user = await Users.findByIdAndDelete(req.params._id)
+    await Users.findByIdAndDelete(req.params.id)
     res.json({
       status: 200,
-      body: `Usuario con ${req.params._id} Eliminado`
+      message: `User ${req.params.id} deleted`
     })
   } catch (error) {
-    console.log(error)
+    next(error)
   }
 }
 
+usersController.getUserById = async (req, res, next) => {
+  try {
+    const user = await Users.findById(req.userId)
+    res.json({
+      state: 200,
+      message: 'User with token listed',
+      body: user
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 
 module.exports = usersController
