@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { Double } = require('mongodb')
 const { Schema } = mongoose
 
 const TouristicSites = new Schema(
@@ -9,16 +8,16 @@ const TouristicSites = new Schema(
     city: { type: String, require: false },
     latitude: { type: String, require: false },
     length: { type: String, require: false },
-    rating: { type: Number, require: false  },
+    rating: { type: Number, require: false },
     address: { type: String, require: false },
     average_price: { type: String, require: false },
     phone: { type: String, require: false },
     web: { type: String, require: false },
-    image: { type:[String], require: false },
-    categories: [],
+    image: { type: String, require: false },
+    categories: []
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 )
 

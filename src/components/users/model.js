@@ -11,11 +11,11 @@ const Users = new Schema(
     email: {
       type: String,
       required: true,
-      useCreateIndex: true,
-    },
+      useCreateIndex: true
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 )
 

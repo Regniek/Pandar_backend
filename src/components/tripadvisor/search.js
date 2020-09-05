@@ -16,18 +16,18 @@ searchLocation.search = async (req, res) => {
       lang: 'es_CO',
       currency: 'USD',
       units: 'km',
-      query: location,
+      query: location
     },
     headers: {
       'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-    },
+      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+    }
   }
   request(option, function (error, response, body) {
     if (error) throw new Error(error)
-    let data = JSON.parse(body)
+    const data = JSON.parse(body)
 
-    let locationId = data.data[0].result_object.location_id
+    const locationId = data.data[0].result_object.location_id
 
     const locationRestaurants = {
       method: 'GET',
@@ -39,12 +39,12 @@ searchLocation.search = async (req, res) => {
         limit: limit,
         currency: 'USD',
         lang: 'es_CO',
-        location_id: locationId,
+        location_id: locationId
       },
       headers: {
         'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-        'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-      },
+        'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+      }
     }
     request(locationRestaurants, function (error, response, body) {
       if (error) throw new Error(error)
@@ -58,23 +58,23 @@ searchLocation.search = async (req, res) => {
           currency: 'USD',
           lunit: 'km',
           limit: limit,
-          location_id: locationId,
+          location_id: locationId
         },
         headers: {
           'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
           'x-rapidapi-key':
-            'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-        },
+            'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+        }
       }
       request(locationAtractions, function (error, response, body) {
         if (error) throw new Error(error)
-        let dataAtractions = JSON.parse(body)
+        const dataAtractions = JSON.parse(body)
 
-        var today = new Date()
-        day = today.getDate() + 2
-        month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
-        year = today.getFullYear()
-        let date = `${year}-${month}-${day}`
+        const today = new Date()
+        const day = today.getDate() + 2
+        const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
+        const year = today.getFullYear()
+        const date = `${year}-${month}-${day}`
 
         const locationHotel = {
           method: 'GET',
@@ -92,24 +92,24 @@ searchLocation.search = async (req, res) => {
             checkin: date,
             adults: '1',
             rooms: '1',
-            nights: '1',
+            nights: '1'
           },
           headers: {
             'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
             'x-rapidapi-key':
-              'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-          },
+              'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+          }
         }
 
         request(locationHotel, function (error, response, body) {
           if (error) throw new Error(error)
-          let dataHotel = JSON.parse(body)
+          const dataHotel = JSON.parse(body)
 
           res.json({
             locationId: locationId,
             dataAtractions: dataAtractions,
             dataRestaurants: dataRestaurants,
-            dataHotel: dataHotel,
+            dataHotel: dataHotel
           })
         })
       })
@@ -118,3 +118,4 @@ searchLocation.search = async (req, res) => {
 }
 
 module.exports = searchLocation
+// res.json({ body: JSON.parse(body) })

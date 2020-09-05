@@ -9,7 +9,7 @@ categoriesController.getCategories = async (req, res, next) => {
     )
     res.json({
       status: 200,
-      data: categories,
+      data: categories
     })
   } catch (error) {
     next(error)
@@ -24,7 +24,7 @@ categoriesController.getOneCategory = async (req, res, next) => {
     )
     res.json({
       status: 200,
-      data: categorie,
+      data: categorie
     })
   } catch (error) {
     next(error)
@@ -36,12 +36,12 @@ categoriesController.postCategorie = async (req, res, next) => {
     const categorie = new Categories({
       categorie_name: req.body.categorie_name,
       parent_categorie: req.body.parent_categorie,
-      description: req.body.description,
+      description: req.body.description
     })
     await categorie.save()
     res.json({
       status: 201,
-      data: categorie,
+      data: categorie
     })
   } catch (error) {
     next(error)
@@ -50,10 +50,10 @@ categoriesController.postCategorie = async (req, res, next) => {
 
 categoriesController.deleteCategorie = async (req, res, next) => {
   try {
-    const categorie = await Categories.findByIdAndDelete(req.params.id)
+    await Categories.findByIdAndDelete(req.params.id)
     res.json({
       status: 200,
-      message: `Categorie ${req.params.id} deleted`,
+      message: `Categorie ${req.params.id} deleted`
     })
   } catch (error) {
     next(error)
