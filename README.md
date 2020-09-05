@@ -5,13 +5,15 @@
 
 [[_TOC_]]
 
-## Descripción
+## Español
+
+### Descripción
 Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que tiene como objetivo brindar las rutas, datos y demas medios de conexión para lograr el funcionamiento del Frontend de la aplicación.
 
 
-## Documentación
+### Documentación
 
-### Tecnologías
+#### Tecnologías
 |Tecnología                                                             |Versión         | Vesión                       
 |:----------------------------------------------------------------------|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |<img src="https://img.shields.io/badge/Node.js-darkgreen">             |^11.1.0        | Mayor dominio general en el equipo, nos permite utilizar JavaScript para construir el backend de una aplicación web e inmensa comunidad para recibir apoyo en los proyectos.|
@@ -21,7 +23,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |<img src="https://img.shields.io/badge/MongoDB-dark">                  |^4.0           | Permite tener una base de datos NoSQL de forma gratuita en linea, con posibilidad de configuracion publica y privada permitiendo un mejor desarrollo a nivel de equipo, ademas el uso de  documentos facilita la inserción de archivos tipo JSON.|
 
 
-### Equipo Backend y Data
+#### Equipo Backend y Data
 
 |Miembro            |Rol                 |Tareas            |
 |:------------------|:-------------------|:-----------------|
@@ -31,7 +33,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo CRUD touristic-sites, Implementación de busquedas API TripAdvisor a ruta search-site  |
 |Todos              |**Todos**           | Inserción de registros a la base de datos |
 
-### Enlaces de Interés
+#### Enlaces de Interés
 
 |Nombre                  |Enlace|
 |:-----------------------|:------------|
@@ -40,7 +42,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 |Diagrama del Algoritmo  |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270|
 |Collección Postman      |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
 
-## Pasos para Colaborar
+### Pasos para Colaborar
 1. Hacer fork del proyecto: al dar click al boton fork (ubicado en la parte superior derecha)
 2. Clonar el proyecto: `git clone https://gitlab.com/<Tu usuario>/backend-intellegent-tourism-system.git`
 3. Instalar las dependencias: `npm install` o usar `npm i`
@@ -49,10 +51,10 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 6. Subir los cambios al repositio creado con el fork: `git push origin <rama que se uso>`
 7. Crear un merge request al proyecto original.
 
-## Maneras de Consumir el Servicio
+### Maneras de Consumir el Servicio
 
-### Search-Site
-#### • GET Search-Site
+#### Search-Site
+##### • GET Search-Site
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
@@ -82,7 +84,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • GET Search-Site (TripAdvisor)
+##### • GET Search-Site (TripAdvisor)
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Hotel`, `Restaurante`
@@ -181,9 +183,9 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-### Login
+#### Login
 
-#### • POST Register
+##### • POST Register
 
 - URL: `http://localhost:4000/register`
 
@@ -218,7 +220,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • POST Login
+##### • POST Login
 
 - URL: `http://localhost:4000/login`
 
@@ -248,9 +250,9 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-### Touristic-Sites
+#### Touristic-Sites
 
-#### • GET Touristic-Sites
+##### • GET Touristic-Sites
 
 - URL: `http://localhost:4000/touristic-site`
 
@@ -298,7 +300,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • GET One Touristic-Site
+##### • GET One Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
@@ -327,7 +329,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     }
 ```
 
-#### • POST Touristic-Site
+##### • POST Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site`
 - Token de Autorización: Requerido
@@ -380,7 +382,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • PATCH Touristic-Site
+##### • PATCH Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
@@ -404,7 +406,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • DELETE Touristic-Site
+##### • DELETE Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
@@ -418,9 +420,9 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-### Surveys
+#### Surveys
 
-#### • GET Surveys
+##### • GET Surveys
 
 - URL: `http://localhost:4000/survey`
 
@@ -483,7 +485,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • GET One Survey
+##### • GET One Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
@@ -520,7 +522,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • POST Survey
+##### • POST Survey
 
 - URL: `http://localhost:4000/survey`
 - Token de Autorización: Requerido
@@ -556,7 +558,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • PATCH Survey
+##### • PATCH Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f51b3684757c94650678303`
@@ -579,7 +581,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • DELETE Survey
+##### • DELETE Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
@@ -593,7 +595,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-### Users
+#### Users
 
 #### • GET Users
 
@@ -635,7 +637,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ```
 
-#### • GET One User
+##### • GET One User
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
 - Ejemplo: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
@@ -660,7 +662,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • POST User
+##### • POST User
 
 - URL: `http://localhost:4000/user`
 - Token de Autorización: Requerido
@@ -697,7 +699,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • PATCH User #####
+##### • PATCH User #####
 
 - URL: `http://localhost:4000/user/< _id del usuario >`
 - Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
@@ -724,7 +726,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 }
 ```
 
-#### • DELETE User
+##### • DELETE User
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
 - Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
