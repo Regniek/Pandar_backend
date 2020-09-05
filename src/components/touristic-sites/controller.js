@@ -1,6 +1,8 @@
 const TouristicSites = require('./model')
 const touristicSitesController = {}
 const request = require('request')
+const { config } = require('../../config/index')
+
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
@@ -151,8 +153,8 @@ touristicSitesController.searchHotel = async (req, res, next) => {
       query: location
     },
     headers: {
-      'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+      'x-rapidapi-host': config.tripAdvisorHost,
+      'x-rapidapi-key': config.tripAdvisorKey
     }
   }
   request(option, function (error, response, body) {
@@ -185,9 +187,9 @@ touristicSitesController.searchHotel = async (req, res, next) => {
         nights: '1'
       },
       headers: {
-        'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-        'x-rapidapi-key':
-          'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+        'x-rapidapi-host': config.tripAdvisorHost,
+        'x-rapidapi-key': config.tripAdvisorKey,
+
       }
     }
 
@@ -220,8 +222,8 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
       query: location
     },
     headers: {
-      'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+      'x-rapidapi-host': config.tripAdvisorHost,
+      'x-rapidapi-key': config.tripAdvisorKey
     }
   }
   request(option, function (error, response, body) {
@@ -242,8 +244,9 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
         location_id: locationId
       },
       headers: {
-        'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-        'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+        'x-rapidapi-host': config.tripAdvisorHost,
+        'x-rapidapi-key': config.tripAdvisorKey
+
       }
     }
     request(locationRestaurants, function (error, response, body) {

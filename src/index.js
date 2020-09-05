@@ -8,7 +8,7 @@ const app = express()
 const passport = require('passport')
 require('./lib/passport')
 
-const authRoutes = require('./routes/auth')
+const authRoutes = require('./components/auth/auth')
 const usersRoutes = require('./components/users/routes')
 const touristicSitesRoutes = require('./components/touristic-sites/routes')
 const tripAdvisorRoutes = require('./components/tripadvisor/routes')
