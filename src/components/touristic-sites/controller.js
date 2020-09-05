@@ -1,15 +1,14 @@
-const touristicSites = require('./model')
+const TouristicSites = require('./model')
 const touristicSitesController = {}
 const request = require('request')
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
-    console.log('ok')
-    const sites = await touristicSites.find()
+    const sites = await TouristicSites.find()
     res.json({
       status: 200,
       message: 'Touristic sites listed',
-      body: sites,
+      body: sites
     })
   } catch (error) {
     next(error)
@@ -18,11 +17,11 @@ touristicSitesController.getSites = async (req, res, next) => {
 
 touristicSitesController.getOneSite = async (req, res, next) => {
   try {
-    const site = await touristicSites.findById(req.params.id)
+    const site = await TouristicSites.findById(req.params.id)
     res.json({
       status: 200,
       message: 'Touristic site listed',
-      body: site,
+      body: site
     })
   } catch (error) {
     next(error)
@@ -32,7 +31,7 @@ touristicSitesController.getOneSite = async (req, res, next) => {
 touristicSitesController.postSite = async (req, res, next) => {
   console.log(req.body)
   try {
-    const site = new touristicSites({
+    const site = new TouristicSites({
       location_name: req.body.location_name,
       country: req.body.country,
       city: req.body.city,
@@ -50,7 +49,7 @@ touristicSitesController.postSite = async (req, res, next) => {
     res.json({
       status: 201,
       message: 'Touristic site created',
-      body: site,
+      body: site
     })
   } catch (error) {
     next(error)
@@ -73,7 +72,7 @@ touristicSitesController.updateSite = async (req, res, next) => {
       image: req.body.image,
       categories: req.body.categories
     }
-    await touristicSites.findByIdAndUpdate(
+    await TouristicSites.findByIdAndUpdate(
       req.params.id,
       { $set: site },
       { omitUndefined: true, upsert: true }
@@ -81,7 +80,7 @@ touristicSitesController.updateSite = async (req, res, next) => {
     res.json({
       status: 200,
       message: 'Touristic site updated',
-      body: site,
+      body: site
     })
   } catch (error) {
     next(error)
@@ -90,10 +89,10 @@ touristicSitesController.updateSite = async (req, res, next) => {
 
 touristicSitesController.deleteSite = async (req, res, next) => {
   try {
-    const sites = await touristicSites.findByIdAndRemove(req.params.id)
+    await TouristicSites.findByIdAndRemove(req.params.id)
     res.json({
       status: 200,
-      message: `Touristic site ${req.params.id} deleted`,
+      message: `Touristic site ${req.params.id} deleted`
     })
   } catch (error) {
     next(error)
@@ -102,31 +101,31 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 
 touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
-    let city = req.query.city
-    if (req.query.categories === null || !req.query.categories){
+    const city = req.query.city
+    if (req.query.categories === null || !req.query.categories) {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
-      const sites = await touristicSites.find({
-      city: { $regex : city , $options : 'i'}
+      const sites = await TouristicSites.find({
+        city: { $regex: city, $options: 'i' }
       })
       res.json({
         count: sites.length,
-        body: sites,
+        body: sites
       })
-    }else if (req.query.categories === 'Hotel' || req.query.categories === 'hotel'){
+    } else if (req.query.categories === 'Hotel' || req.query.categories === 'hotel') {
       city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
-    }else if (req.query.categories === 'Restaurante' || req.query.categories === 'restaurante') {
+    } else if (req.query.categories === 'Restaurante' || req.query.categories === 'restaurante') {
       city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
-    }else{
+    } else {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
-      const sites = await touristicSites.find({
-        categories: { $regex : req.query.categories, $options : 'i'    },
-        $or: [{ city: { $regex : city, $options : 'i'  }}],
+      const sites = await TouristicSites.find({
+        categories: { $regex: req.query.categories, $options: 'i' },
+        $or: [{ city: { $regex: city, $options: 'i' } }]
       })
       res.json({
         count: sites.length,
-        body: sites,
+        body: sites
       })
     }
   } catch (error) {
@@ -135,11 +134,10 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
   }
 }
 
-
 touristicSitesController.searchHotel = async (req, res, next) => {
-  let location = req.query.city
-  let limit = 5
-  let option = {
+  const location = req.query.city
+  const limit = 5
+  const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
     qs: {
@@ -150,25 +148,25 @@ touristicSitesController.searchHotel = async (req, res, next) => {
       lang: 'es_MX',
       currency: 'USD',
       units: 'km',
-      query: location,
+      query: location
     },
     headers: {
       'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-    },
+      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+    }
   }
   request(option, function (error, response, body) {
     if (error) throw new Error(error)
-    let data = JSON.parse(body)
-    let locationId = data.data[0].result_object.location_id
+    const data = JSON.parse(body)
+    const locationId = data.data[0].result_object.location_id
 
-    let today = new Date()
-        day = today.getDate() + 2
-        month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
-        year = today.getFullYear()
-        let date = `${year}-${month}-${day}`
+    const today = new Date()
+    const day = today.getDate() + 2
+    const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
+    const year = today.getFullYear()
+    const date = `${year}-${month}-${day}`
 
-    let locationHotel = {
+    const locationHotel = {
       method: 'GET',
       url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
       qs: {
@@ -184,32 +182,31 @@ touristicSitesController.searchHotel = async (req, res, next) => {
         checkin: date,
         adults: '1',
         rooms: '1',
-        nights: '1',
+        nights: '1'
       },
       headers: {
         'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
         'x-rapidapi-key':
-          'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-      },
+          'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+      }
     }
-    
+
     request(locationHotel, function (error, response, body) {
-        if (error) throw new Error(error)
-        const dataHotel = JSON.parse(body)
-        
-        res.json({
-          locationId: locationId,
-          dataHotel: dataHotel
-        })
+      if (error) throw new Error(error)
+      const dataHotel = JSON.parse(body)
+
+      res.json({
+        locationId: locationId,
+        dataHotel: dataHotel
+      })
     })
   })
 }
 
-
 touristicSitesController.searchRestaurant = async (req, res, next) => {
-  let location = req.query.city
-  let limit = 3
-  let option = {
+  const location = req.query.city
+  const limit = 3
+  const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
     qs: {
@@ -220,39 +217,39 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
       lang: 'es_MX',
       currency: 'USD',
       units: 'km',
-      query: location,
+      query: location
     },
     headers: {
       'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-    },
+      'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
+    }
   }
   request(option, function (error, response, body) {
     if (error) throw new Error(error)
-    let data = JSON.parse(body)
-    let locationId = data.data[0].result_object.location_id
+    const data = JSON.parse(body)
+    const locationId = data.data[0].result_object.location_id
 
-      const locationRestaurants = {
-        method: 'GET',
-        url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
-        qs: {
-          restaurant_tagcategory_standalone: '',
-          lunit: 'km',
-          restaurant_tagcategory: '',
-          limit: limit,
-          currency: 'USD',
-          lang: 'es_CO',
-          location_id: locationId,
-        },
-        headers: {
-          'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
-          'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3',
-        },
+    const locationRestaurants = {
+      method: 'GET',
+      url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
+      qs: {
+        restaurant_tagcategory_standalone: '',
+        lunit: 'km',
+        restaurant_tagcategory: '',
+        limit: limit,
+        currency: 'USD',
+        lang: 'es_CO',
+        location_id: locationId
+      },
+      headers: {
+        'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
+        'x-rapidapi-key': 'bea02aec26msh1530ec3ef0f107fp13cbd0jsn30da004610b3'
       }
-      request(locationRestaurants, function (error, response, body) {
-        if (error) throw new Error(error)
-        var dataRestaurants = JSON.parse(body)
-      
+    }
+    request(locationRestaurants, function (error, response, body) {
+      if (error) throw new Error(error)
+      var dataRestaurants = JSON.parse(body)
+
       res.json({
         locationId: locationId,
         dataRestaurants: dataRestaurants
@@ -260,7 +257,5 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
     })
   })
 }
-
-
 
 module.exports = touristicSitesController
