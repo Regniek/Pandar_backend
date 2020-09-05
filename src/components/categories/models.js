@@ -6,12 +6,12 @@ const Categories = new Schema(
     categorie_name: { type: String, required: true },
     parent_categorie: {
       type: Schema.ObjectId,
-      ref: 'Categories',
+      ref: 'Categories'
     },
-    description: { type: String, required: true },
+    description: { type: String, required: true }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 )
 
