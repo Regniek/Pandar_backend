@@ -14,7 +14,7 @@ const TouristicSites = new Schema(
     average_price: { type: String, require: false },
     phone: { type: String, require: false },
     web: { type: String, require: false },
-    image: { type:String, require: false },
+    image: { type:[String], require: false },
     categories: [],
   },
   {
