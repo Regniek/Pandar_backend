@@ -35,12 +35,14 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 #### Enlaces de Interés
 
-|Nombre                  |Enlace|
-|:-----------------------|:------------|
-|Videos de las Reuniones |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l|
-|Diagrama de Flujo       |https://www.notion.so/Diagrama-de-Flujo-Backend-2836250100424aadadd74dd77455c411|
-|Diagrama del Algoritmo  |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270|
-|Collección Postman      |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
+|Nombre                      |Enlace|
+|:---------------------------|:------------|
+|Videos de las Reuniones     |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l |
+|Diagrama de Flujo           |https://www.notion.so/Diagrama-de-Flujo-Backend-2836250100424aadadd74dd77455c411 |
+|Diagrama del Algoritmo      |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270 |
+|Diagrama Entidad Relación   |https://www.notion.so/Diagrama-Entidad-Relaci-n-4044b0e2e21546d4b4bb39aed1240e4f |
+|Collección Postman          |https://documenter.getpostman.com/view/12073893/TVCgxmr8 |
+|API Backend                 |https://backend-intellegent-tourism-system.vercel.app |
 
 ### Pasos para Colaborar
 1. Hacer fork del proyecto: al dar click al boton fork (ubicado en la parte superior derecha)
@@ -59,6 +61,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
 - Ejemplo: `http://localhost:4000/search-site?city=aguascalientes&categories=cultura`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories=cultura`
 
 > Response
 ```
@@ -89,6 +92,8 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Hotel`, `Restaurante`
 - Ejemplo: `http://localhost:4000/search-site?city=Medellin&categories=Hotel`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel` (Revisar)
+
 
 > Response
 ```
@@ -188,6 +193,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • POST Register
 
 - URL: `http://localhost:4000/register`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/register`
 
 > Body
 ```
@@ -223,6 +229,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • POST Login
 
 - URL: `http://localhost:4000/login`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/login`
 
 > Body
 ```
@@ -255,6 +262,8 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • GET Touristic-Sites
 
 - URL: `http://localhost:4000/touristic-site`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site`
+
 
 > Response
 ```
@@ -304,6 +313,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f4c2540d0553c080c79634d`
 
 > Response
 ```
@@ -332,6 +342,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • POST Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site`
 - Token de Autorización: Requerido
 
 > Body
@@ -386,6 +397,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
 - Token de Autorización: Requerido
 
 > Body
@@ -410,6 +422,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
 - Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
 - Token de Autorización: Requerido
 
 > Response
@@ -425,6 +438,8 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • GET Surveys
 
 - URL: `http://localhost:4000/survey`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey`
+
 
 > Response
 ```
@@ -489,6 +504,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f5241fa89e724361cca0f27`
 
 > Response
 ```
@@ -525,6 +541,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • POST Survey
 
 - URL: `http://localhost:4000/survey`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey`
 - Token de Autorización: Requerido
 
 > Body
@@ -562,6 +579,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f51b3684757c94650678303`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
 - Token de Autorización: Requerido
 
 > Body
@@ -585,6 +603,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
 - Ejemplo: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
 - Token de Autorización: Requerido
 
 > Response
@@ -600,6 +619,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 #### • GET Users
 
 - URL: `http://localhost:4000/user`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/user`
 
 > Response
 ```
@@ -641,6 +661,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
 - Ejemplo: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f3a001e747bf745042b59b7`
 
 > Response
 ```
@@ -665,7 +686,9 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 ##### • POST User
 
 - URL: `http://localhost:4000/user`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/user`
 - Token de Autorización: Requerido
+
 
 > Body
 ```
@@ -703,6 +726,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/user/< _id del usuario >`
 - Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
 - Token de Autorización: Requerido
 
 > Body
@@ -730,6 +754,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
 - Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
 - Token de Autorización: Requerido
 
 > Response
@@ -764,36 +789,39 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 |:------------------|:-------------------|:-----------------|
 |Adrian Gutierrez   |**Data Scientist**  | Intelligent algorithm development, Intelligent algorithm diagram |
 |Ildebrando Mora    |**Backend**         | Session system development, TripAdvisor API connection, CRUD Users development, auth and search-site routes construction |
-|Juan Espitia       |**Backend**         | Creación de la estructura base del servidor, Desarrollo CRUD surveys,  Mejora de la ruta search-site, Diagrama de Flujo|
-|Francisco Suarez   |**Backend**         | Conexión con MongoDB, Desarrollo CRUD touristic-sites, Implementación de busquedas API TripAdvisor a ruta search-site  |
-|Todos              |**Everyone**        | Inserción de registros a la base de datos |
+|Juan Espitia       |**Backend**         | Creation of the base structure of the server, CRUD surveys development, Improvement of the search-site route, Flowchart |
+|Francisco Suarez   |**Backend**         | Connection with MongoDB, CRUD touristic-sites development, TripAdvisor API search implementation to search-site route  |
+|Everyone           |**Everyone**        | Insertion of records into the database |
 
-#### Enlaces de Interés
+#### Links of Interest
 
-|Nombre                  |Enlace|
-|:-----------------------|:------------|
-|Videos de las Reuniones |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l|
-|Diagrama de Flujo       |https://www.notion.so/Diagrama-de-Flujo-Backend-2836250100424aadadd74dd77455c411|
-|Diagrama del Algoritmo  |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270|
-|Collección Postman      |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
+|Name                        |Link|
+|:---------------------------|:------------|
+|Meetings Videos             |https://drive.google.com/drive/folders/1w8EpKRT_nDAw7tfnhyzEgh_CbkFCXN6l|
+|Flowchart                   |https://www.notion.so/Diagrama-de-Flujo-Backend-2836250100424aadadd74dd77455c411|
+|Algorithm Diagram           |https://www.notion.so/Diagrama-del-Algoritmo-Inteligente-6037c6f234eb4bbda9f9d5f3e6bf6270|
+|Entity Relationship Diagram |https://www.notion.so/Diagrama-Entidad-Relaci-n-4044b0e2e21546d4b4bb39aed1240e4f |
+|Postman Collection          |https://documenter.getpostman.com/view/12073893/TVCgxmr8|
+|API Backend                 |https://backend-intellegent-tourism-system.vercel.app |
 
-### Pasos para Colaborar
-1. Hacer fork del proyecto: al dar click al boton fork (ubicado en la parte superior derecha)
-2. Clonar el proyecto: `git clone https://gitlab.com/<Tu usuario>/backend-intellegent-tourism-system.git`
-3. Instalar las dependencias: `npm install` o usar `npm i`
-4. Ejecutar el proyecto: `npm run dev`
-5. Realizar las mejoras necesarias y hacer un commit: `git commit -am "<Mensaje del commit>"` o usar `git add .` y luego `git commit -m "<Mensaje del commit>"`
-6. Subir los cambios al repositio creado con el fork: `git push origin <rama que se uso>`
-7. Crear un merge request al proyecto original.
+### Steps to Collaborate
+1. Fork the project: by clicking the fork button (located at the top right)
+2. Clone the project: `git clone https://gitlab.com/<your username>/backend-intellegent-tourism-system.git`
+3. Install dependencies: `npm install` or use `npm i`
+4. Run the project: `npm run dev`
+5. Do the necessary improvements and make a commit: `git commit -am "<commit message>"` or use `git add .` and then `git commit -m "<commit message>"`
+6. Upload changes to the repository created with the fork: `git push origin <rama que se uso>`
+7. Create a merge request to the original project.
 
-### Maneras de Consumir el Servicio
+### Ways to Use the Service
 
 #### Search-Site
 ##### • GET Search-Site
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
-- Categorias: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
-- Ejemplo: `http://localhost:4000/search-site?city=aguascalientes&categories=cultura`
+- Categoriess: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
+- Example: `http://localhost:4000/search-site?city=aguascalientes&categories=cultura`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories=cultura`
 
 > Response
 ```
@@ -822,8 +850,10 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET Search-Site (TripAdvisor)
 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
-- Categorias: `Hotel`, `Restaurante`
-- Ejemplo: `http://localhost:4000/search-site?city=Medellin&categories=Hotel`
+- Categories: `Hotel`, `Restaurante`
+- Example: `http://localhost:4000/search-site?city=Medellin&categories=Hotel`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel` (Revisar)
+
 
 > Response
 ```
@@ -923,6 +953,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • POST Register
 
 - URL: `http://localhost:4000/register`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/register`
 
 > Body
 ```
@@ -958,6 +989,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • POST Login
 
 - URL: `http://localhost:4000/login`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/login`
 
 > Body
 ```
@@ -990,6 +1022,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET Touristic-Sites
 
 - URL: `http://localhost:4000/touristic-site`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site`
+
 
 > Response
 ```
@@ -1038,7 +1072,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET One Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
-- Ejemplo: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
+- Example: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f4c2540d0553c080c79634d`
 
 > Response
 ```
@@ -1067,6 +1102,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • POST Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site`
 - Token de Autorización: Requerido
 
 > Body
@@ -1120,8 +1156,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • PATCH Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
-- Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
+- Authorization Token: Required
 
 > Body
 ```
@@ -1144,8 +1181,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • DELETE Touristic-Site
 
 - URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
-- Ejemplo: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
+- Authorization Token: Required
 
 > Response
 ```
@@ -1160,6 +1198,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET Surveys
 
 - URL: `http://localhost:4000/survey`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey`
+
 
 > Response
 ```
@@ -1223,7 +1263,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET One Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
-- Ejemplo: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
+- Example: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f5241fa89e724361cca0f27`
 
 > Response
 ```
@@ -1260,7 +1301,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • POST Survey
 
 - URL: `http://localhost:4000/survey`
-- Token de Autorización: Requerido
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey`
+- Authorization Token: Required
 
 > Body
 ```
@@ -1296,8 +1338,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • PATCH Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
-- Ejemplo: `http://localhost:4000/survey/5f51b3684757c94650678303`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/survey/5f51b3684757c94650678303`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
+- Authorization Token: Required
 
 > Body
 ```
@@ -1319,8 +1362,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • DELETE Survey
 
 - URL: `http://localhost:4000/survey/<_id del cuestionario>`
-- Ejemplo: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
+- Authorization Token: Required
 
 > Response
 ```
@@ -1335,6 +1379,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 #### • GET Users
 
 - URL: `http://localhost:4000/user`
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/user`
 
 > Response
 ```
@@ -1375,7 +1420,8 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • GET One User
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
-- Ejemplo: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
+- Example: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f3a001e747bf745042b59b7`
 
 > Response
 ```
@@ -1400,7 +1446,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • POST User
 
 - URL: `http://localhost:4000/user`
-- Token de Autorización: Requerido
+- API Backend: `https://backend-intellegent-tourism-system.vercel.app/user`
+- Authorization Token: Required
+
 
 > Body
 ```
@@ -1437,8 +1485,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • PATCH User #####
 
 - URL: `http://localhost:4000/user/< _id del usuario >`
-- Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
+- Authorization Token: Required
 
 > Body
 ```
@@ -1464,8 +1513,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 ##### • DELETE User
 
 - URL: `http://localhost:4000/user/<_id del usuario>`
-- Ejemplo: `http://localhost:4000/user/5f5246a589e724361cca0f29`
-- Token de Autorización: Requerido
+- Example: `http://localhost:4000/user/5f5246a589e724361cca0f29`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
+- Authorization Token: Required
 
 > Response
 ```
@@ -1474,4 +1524,3 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "message": "User 5f5246a589e724361cca0f29 deleted"
 }
 ```
-
