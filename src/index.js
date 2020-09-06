@@ -6,6 +6,7 @@ const { mongoose } = require('./lib/mongo')
 const morgan = require('morgan')
 const app = express()
 const passport = require('passport')
+const cors = require('cors')
 require('./lib/passport')
 
 const authRoutes = require('./components/auth/auth')
@@ -16,6 +17,7 @@ const surveysRoutes = require('./components/survey/routes')
 const categoriesRoutes = require('./components/categories/routes')
 
 // Body Parser
+app.use(cors())
 app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
