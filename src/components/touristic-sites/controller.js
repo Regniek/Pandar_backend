@@ -3,6 +3,27 @@ const touristicSitesController = {}
 const request = require('request')
 const { config } = require('../../config/index')
 
+const LIMIT = 30;
+
+const formatDataTripAdvisor = (data, categories) => {
+  return data.map((data) => {
+    return {
+      _id: data.location_id,
+      location_name: data.name,
+      country: data.location_string,
+      city: data.location_string,
+      latitude: data.latitude,
+      length: data.longitude,
+      rating: data.rating,
+      address: data.address,
+      average_price: data.price,
+      phone: data.phone,
+      web: data.web_url,
+      image: data.photo ? data.photo.images : null,
+      categories: categories
+    }
+  })
+}
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
@@ -138,7 +159,7 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
 
 touristicSitesController.searchHotel = async (req, res, next) => {
   const location = req.query.city
-  const limit = 5
+  const limit = LIMIT
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
@@ -195,11 +216,14 @@ touristicSitesController.searchHotel = async (req, res, next) => {
 
     request(locationHotel, function (error, response, body) {
       if (error) throw new Error(error)
+
       const dataHotel = JSON.parse(body)
 
+      const formattedData = formatDataTripAdvisor(dataHotel.data, ['Hotel'])
+
       res.json({
-        locationId: locationId,
-        dataHotel: dataHotel
+        count: formattedData.length,
+        body: formattedData
       })
     })
   })
@@ -207,7 +231,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
 
 touristicSitesController.searchRestaurant = async (req, res, next) => {
   const location = req.query.city
-  const limit = 3
+  const limit = LIMIT;
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
@@ -239,6 +263,7 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
         lunit: 'km',
         restaurant_tagcategory: '',
         limit: limit,
+        offset: limit,
         currency: 'USD',
         lang: 'es_CO',
         location_id: locationId
@@ -251,11 +276,15 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
     }
     request(locationRestaurants, function (error, response, body) {
       if (error) throw new Error(error)
-      var dataRestaurants = JSON.parse(body)
+      const dataRestaurants = JSON.parse(body)
+
+      const formattedData = formatDataTripAdvisor(dataRestaurants.data, ['Restaurante'])
 
       res.json({
-        locationId: locationId,
-        dataRestaurants: dataRestaurants
+        // count: dataRestaurants.data.length,
+        // body: dataRestaurants
+        count: formattedData.length,
+        body: formattedData
       })
     })
   })
