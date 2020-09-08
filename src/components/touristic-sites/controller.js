@@ -52,7 +52,6 @@ touristicSitesController.getOneSite = async (req, res, next) => {
 }
 
 touristicSitesController.postSite = async (req, res, next) => {
-  console.log(req.body)
   try {
     const site = new TouristicSites({
       location_name: req.body.location_name,
@@ -153,7 +152,6 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
     }
   } catch (error) {
     next(error)
-    console.log(error)
   }
 }
 
@@ -199,7 +197,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
           currency: 'USD',
           limit: limit,
           order: 'asc',
-          lang: 'es_CO',
+          lang: 'es_ES',
           sort: 'recommended',
           checkin: date,
           adults: '1',
@@ -214,9 +212,10 @@ touristicSitesController.searchHotel = async (req, res, next) => {
       request(locationHotel, function (error, response, body) {
         try {
           const dataHotel = JSON.parse(body)
+          const formattedData = formatDataTripAdvisor(dataHotel.data, ['Hotel'])
           res.json({
-            locationId: locationId,
-            dataHotel: dataHotel
+            count: formattedData.length,
+            body: formattedData
           })
         } catch (error) {
           console.log(error)
@@ -257,7 +256,6 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
   request(option, function (error, response, body) {
     try {
       const data = JSON.parse(body)
-      console.log(data)
       const locationId = data.data[0].result_object.location_id
       const locationRestaurants = {
         method: 'GET',
@@ -268,7 +266,7 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
           restaurant_tagcategory: '',
           limit: limit,
           currency: 'USD',
-          lang: 'es_CO',
+          lang: 'es_ES',
           location_id: locationId
         },
         headers: {
@@ -279,9 +277,10 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
       request(locationRestaurants, function (error, response, body) {
         try {
           var dataRestaurants = JSON.parse(body)
+          const formattedData = formatDataTripAdvisor(dataRestaurants.data, ['Restaurante'])
           res.json({
-            locationId: locationId,
-            dataRestaurants: dataRestaurants
+            count: formattedData.length,
+            body: formattedData
           })
         } catch (error) {
           console.error(error)
