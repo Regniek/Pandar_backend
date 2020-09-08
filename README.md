@@ -92,7 +92,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categorias: `Hotel`, `Restaurante`
 - Ejemplo: `http://localhost:4000/search-site?city=Medellin&categories=Hotel`
-- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel` (Revisar)
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel`
 
 
 > Response
@@ -852,7 +852,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 - URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
 - Categories: `Hotel`, `Restaurante`
 - Example: `http://localhost:4000/search-site?city=Medellin&categories=Hotel`
-- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel` (Revisar)
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hotel`
 
 
 > Response
