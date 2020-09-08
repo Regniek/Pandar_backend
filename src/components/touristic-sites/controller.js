@@ -3,7 +3,7 @@ const touristicSitesController = {}
 const request = require('request')
 const { config } = require('../../config/index')
 
-const LIMIT = 30;
+const LIMIT = 30
 
 const formatDataTripAdvisor = (data, categories) => {
   return data.map((data) => {
@@ -133,10 +133,10 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
         count: sites.length,
         body: sites
       })
-    } else if (req.query.categories === 'Hotel' || req.query.categories === 'hotel') {
+    } else if (req.query.categories === 'Hoteles' || req.query.categories === 'hoteles') {
       city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
-    } else if (req.query.categories === 'Restaurante' || req.query.categories === 'restaurante') {
+    } else if (req.query.categories === 'Restaurantes' || req.query.categories === 'restaurantes') {
       city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
     } else {
@@ -206,7 +206,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
         },
         headers: {
           'x-rapidapi-host': config.tripAdvisorHost,
-          'x-rapidapi-key': config.tripAdvisorKey,
+          'x-rapidapi-key': config.tripAdvisorKey
         }
       }
       request(locationHotel, function (error, response, body) {
@@ -234,7 +234,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
 
 touristicSitesController.searchRestaurant = async (req, res, next) => {
   const location = req.query.city
-  const limit = LIMIT;
+  const limit = LIMIT
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
