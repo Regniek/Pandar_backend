@@ -3,6 +3,27 @@ const touristicSitesController = {}
 const request = require('request')
 const { config } = require('../../config/index')
 
+const LIMIT = 30;
+
+const formatDataTripAdvisor = (data, categories) => {
+  return data.map((data) => {
+    return {
+      _id: data.location_id,
+      location_name: data.name,
+      country: data.location_string,
+      city: data.location_string,
+      latitude: data.latitude,
+      length: data.longitude,
+      rating: data.rating,
+      address: data.address,
+      average_price: data.price,
+      phone: data.phone,
+      web: data.web_url,
+      image: data.photo ? data.photo.images : null,
+      categories: categories
+    }
+  })
+}
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
@@ -138,7 +159,7 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
 
 touristicSitesController.searchHotel = async (req, res, next) => {
   const location = req.query.city
-  const limit = 5
+  const limit = LIMIT
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
@@ -214,7 +235,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
 
 touristicSitesController.searchRestaurant = async (req, res, next) => {
   const location = req.query.city
-  const limit = 3
+  const limit = LIMIT;
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
