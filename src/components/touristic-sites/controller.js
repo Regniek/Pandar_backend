@@ -168,7 +168,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
       limit: '1',
       sort: 'relevance',
       offset: '0',
-      lang: 'es_MX',
+      lang: 'en_EN',
       currency: 'USD',
       units: 'km',
       query: location
@@ -179,53 +179,57 @@ touristicSitesController.searchHotel = async (req, res, next) => {
     }
   }
   request(option, function (error, response, body) {
-    if (error) throw new Error(error)
-    const data = JSON.parse(body)
-    const locationId = data.data[0].result_object.location_id
+    try {
+      const data = JSON.parse(body)
+      const locationId = data.data[0].result_object.location_id
+      const today = new Date()
+      const day = today.getDate() + 2
+      const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
+      const year = today.getFullYear()
+      const date = `${year}-${month}-${day}`
 
-    const today = new Date()
-    const day = today.getDate() + 2
-    const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
-    const year = today.getFullYear()
-    const date = `${year}-${month}-${day}`
-
-    const locationHotel = {
-      method: 'GET',
-      url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
-      qs: {
-        location_id: locationId,
-        pricesmin: '',
-        offset: '0',
-        pricesmax: '',
-        currency: 'USD',
-        limit: limit,
-        order: 'asc',
-        lang: 'es_CO',
-        sort: 'recommended',
-        checkin: date,
-        adults: '1',
-        rooms: '1',
-        nights: '1'
-      },
-      headers: {
-        'x-rapidapi-host': config.tripAdvisorHost,
-        'x-rapidapi-key': config.tripAdvisorKey,
-
+      const locationHotel = {
+        method: 'GET',
+        url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
+        qs: {
+          location_id: locationId,
+          pricesmin: '',
+          offset: '0',
+          pricesmax: '',
+          currency: 'USD',
+          limit: limit,
+          order: 'asc',
+          lang: 'es_CO',
+          sort: 'recommended',
+          checkin: date,
+          adults: '1',
+          rooms: '1',
+          nights: '1'
+        },
+        headers: {
+          'x-rapidapi-host': config.tripAdvisorHost,
+          'x-rapidapi-key': config.tripAdvisorKey,
+        }
       }
-    }
-
-    request(locationHotel, function (error, response, body) {
-      if (error) throw new Error(error)
-
-      const dataHotel = JSON.parse(body)
-
-      const formattedData = formatDataTripAdvisor(dataHotel.data, ['Hotel'])
-
-      res.json({
-        count: formattedData.length,
-        body: formattedData
+      request(locationHotel, function (error, response, body) {
+        try {
+          const dataHotel = JSON.parse(body)
+          res.json({
+            locationId: locationId,
+            dataHotel: dataHotel
+          })
+        } catch (error) {
+          console.log(error)
+        }
       })
-    })
+    } catch (error) {
+      console.error(error)
+      res.json({
+        status: 500,
+        message: 'There is an error',
+        body: []
+      })
+    }
   })
 }
 
@@ -251,42 +255,46 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
     }
   }
   request(option, function (error, response, body) {
-    if (error) throw new Error(error)
-    const data = JSON.parse(body)
-    const locationId = data.data[0].result_object.location_id
-
-    const locationRestaurants = {
-      method: 'GET',
-      url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
-      qs: {
-        restaurant_tagcategory_standalone: '',
-        lunit: 'km',
-        restaurant_tagcategory: '',
-        limit: limit,
-        offset: limit,
-        currency: 'USD',
-        lang: 'es_CO',
-        location_id: locationId
-      },
-      headers: {
-        'x-rapidapi-host': config.tripAdvisorHost,
-        'x-rapidapi-key': config.tripAdvisorKey
-
+    try {
+      const data = JSON.parse(body)
+      console.log(data)
+      const locationId = data.data[0].result_object.location_id
+      const locationRestaurants = {
+        method: 'GET',
+        url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
+        qs: {
+          restaurant_tagcategory_standalone: '',
+          lunit: 'km',
+          restaurant_tagcategory: '',
+          limit: limit,
+          currency: 'USD',
+          lang: 'es_CO',
+          location_id: locationId
+        },
+        headers: {
+          'x-rapidapi-host': config.tripAdvisorHost,
+          'x-rapidapi-key': config.tripAdvisorKey
+        }
       }
-    }
-    request(locationRestaurants, function (error, response, body) {
-      if (error) throw new Error(error)
-      const dataRestaurants = JSON.parse(body)
-
-      const formattedData = formatDataTripAdvisor(dataRestaurants.data, ['Restaurante'])
-
-      res.json({
-        // count: dataRestaurants.data.length,
-        // body: dataRestaurants
-        count: formattedData.length,
-        body: formattedData
+      request(locationRestaurants, function (error, response, body) {
+        try {
+          var dataRestaurants = JSON.parse(body)
+          res.json({
+            locationId: locationId,
+            dataRestaurants: dataRestaurants
+          })
+        } catch (error) {
+          console.error(error)
+        }
       })
-    })
+    } catch (error) {
+      console.error(error)
+      res.json({
+        status: 500,
+        message: 'There is an error',
+        body: []
+      })
+    }
   })
 }
 
