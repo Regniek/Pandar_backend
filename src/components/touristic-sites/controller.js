@@ -299,4 +299,20 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
   })
 }
 
+touristicSitesController.recommendations = async (req, res) => {
+  const {city, budget, categories} = req.query;
+
+  console.log('City: ', city);
+  console.log('budget: ', budget);
+  console.log('categories: ', categories);
+
+
+  const result = []
+
+  res.json({
+    count: result.length,
+    body: result
+  })
+}
+
 module.exports = touristicSitesController
