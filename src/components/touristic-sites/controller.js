@@ -302,16 +302,45 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
 touristicSitesController.recommendations = async (req, res) => {
   const {city, budget, categories} = req.query;
 
-  console.log('City: ', city);
-  console.log('budget: ', budget);
-  console.log('categories: ', categories);
+  const sites = await TouristicSites.find({
+    categories: { $in: categories},
+    $or: [{ city: { $regex: city, $options: 'i'}}]
+  })
 
+  let results = sites.map((site) => {
+    let weight = 25;
 
-  const result = []
+    weight += Math.floor(site.rating) * 5
+
+    const priceDiff = Math.abs(budget - Number(site.average_price.substring(1).trim()));
+
+    if(priceDiff <= budget) {
+      weight += 25;
+    } else if (priceDiff < budget*0.10) {
+      weight += 20;
+    } else if (priceDiff < budget*0.20) {
+      weight += 15;
+    } else if (priceDiff < budget*0.30) {
+      weight += 10;
+    } else if (priceDiff < budget*0.40) {
+      weight += 5;
+    } else {
+      weight += 0;
+    }
+
+    const intersection = site.categories.filter(x => categories.includes(x));
+    const singleValue = categories.length ? 25/categories.length : 0;
+    weight += singleValue * intersection.length;
+    weight = Number(weight.toFixed(2))
+
+    return {...site._doc, weight};
+  })
+
+  results = results.sort((r1, r2) => r2.weight - r1.weight).slice(0, 5)
 
   res.json({
-    count: result.length,
-    body: result
+    count: results.length,
+    body: results
   })
 }
 
