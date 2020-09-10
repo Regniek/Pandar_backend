@@ -5,12 +5,12 @@ const { mongoose } = require('./lib/mongo')
 /* eslint-enable */
 const morgan = require('morgan')
 const app = express()
-//const passport = require('passport')
+// const passport = require('passport')
 const cors = require('cors')
-//require('./lib/passport')
+// require('./lib/passport')
 const path = require('path')
 const fs = require('fs')
-const CronJob = require('cron').CronJob;
+const CronJob = require('cron').CronJob
 
 const authRoutes = require('./components/auth/auth')
 const usersRoutes = require('./components/users/routes')
@@ -25,11 +25,8 @@ app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-
-
 // Routes
-//app.get('/public', express.static(path.join(__dirname, './public/data.csv')))
-
+// app.get('/public', express.static(path.join(__dirname, './public/data.csv')))
 
 app.use('/', require('./components/data/routes'))
 app.use('/', authRoutes)
@@ -40,16 +37,12 @@ app.use('/', surveysRoutes)
 app.use('/', categoriesRoutes)
 // passport.authenticate('jwt', { session: false }),
 
-
 // Server
 app.listen(config.port, () => {
   console.log(`Server listening at ${config.host}:${config.port}`)
 })
 
-
-
-
-// var job = new CronJob('*/10 * * * * *', function() {
+// let job = new CronJob('*/10 * * * * *', function() {
 //   const turisticSitesData = require('./components/data/index')
 //   turisticSitesData.addData()
 // }, null, true, 'America/Bogota');
