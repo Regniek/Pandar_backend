@@ -141,9 +141,11 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
       touristicSitesController.searchRestaurant(req, res)
     } else {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
+
+      const { categories } = req.query
       const sites = await TouristicSites.find({
-        categories: { $regex: req.query.categories, $options: 'i' },
-        $or: [{ city: { $regex: city, $options: 'i' } }]
+        categories: { $in: categories},
+        $or: [{ city: { $regex: city, $options: 'i'}}]
       })
       res.json({
         count: sites.length,

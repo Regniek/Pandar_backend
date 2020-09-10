@@ -49,8 +49,8 @@ app.listen(config.port, () => {
 
 
 
-var job = new CronJob('*/10 * * * * *', function() {
-  const turisticSitesData = require('./components/data/index')
-  turisticSitesData.addData()
-}, null, true, 'America/Bogota');
-job.start();
+// var job = new CronJob('*/10 * * * * *', function() {
+//   const turisticSitesData = require('./components/data/index')
+//   turisticSitesData.addData()
+// }, null, true, 'America/Bogota');
+// job.start();

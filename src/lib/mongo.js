@@ -16,3 +16,5 @@ mongoose.connect(MONGO_URL, {
   .catch(error => console.error('There is a problem with the connection to MongoDB' + error))
 
 module.exports = mongoose
+
+
