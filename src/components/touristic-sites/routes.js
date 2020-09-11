@@ -10,5 +10,6 @@ router.post('/touristic-site', passport.authenticate('jwt', { session: false }),
 router.patch('/touristic-site/:id', passport.authenticate('jwt', { session: false }), touristicSites.updateSite)
 router.delete('/touristic-site/:id', passport.authenticate('jwt', { session: false }), touristicSites.deleteSite)
 router.get('/search-site', touristicSites.searchByCategories)
+router.get('/search-site/recommendations', touristicSites.recommendations)
 
 module.exports = router

@@ -3,6 +3,27 @@ const touristicSitesController = {}
 const request = require('request')
 const { config } = require('../../config/index')
 
+const LIMIT = 30
+
+const formatDataTripAdvisor = (data, categories) => {
+  return data.map((data) => {
+    return {
+      _id: data.location_id,
+      location_name: data.name,
+      country: data.location_string,
+      city: data.location_string,
+      latitude: data.latitude,
+      length: data.longitude,
+      rating: data.rating,
+      address: data.address,
+      average_price: data.price,
+      phone: data.phone,
+      web: data.web_url,
+      image: data.photo ? data.photo.images : null,
+      categories: categories
+    }
+  })
+}
 
 touristicSitesController.getSites = async (req, res, next) => {
   try {
@@ -31,7 +52,6 @@ touristicSitesController.getOneSite = async (req, res, next) => {
 }
 
 touristicSitesController.postSite = async (req, res, next) => {
-  console.log(req.body)
   try {
     const site = new TouristicSites({
       location_name: req.body.location_name,
@@ -104,6 +124,7 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
     const city = req.query.city
+    console.log(req.query.categories)
     if (req.query.categories === null || !req.query.categories) {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
       const sites = await TouristicSites.find({
@@ -113,17 +134,19 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
         count: sites.length,
         body: sites
       })
-    } else if (req.query.categories === 'Hotel' || req.query.categories === 'hotel') {
+    } else if (req.query.categories[0] === 'Hoteles' || req.query.categories[0] === 'hoteles') {
       city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
-    } else if (req.query.categories === 'Restaurante' || req.query.categories === 'restaurante') {
+    } else if (req.query.categories[0] === 'Restaurantes' || req.query.categories[0] === 'restaurantes') {
       city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
     } else {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
+
+      const { categories } = req.query
       const sites = await TouristicSites.find({
-        categories: { $regex: req.query.categories, $options: 'i' },
-        $or: [{ city: { $regex: city, $options: 'i' } }]
+        categories: { $in: categories},
+        $or: [{ city: { $regex: city, $options: 'i'}}]
       })
       res.json({
         count: sites.length,
@@ -132,13 +155,12 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
     }
   } catch (error) {
     next(error)
-    console.log(error)
   }
 }
 
 touristicSitesController.searchHotel = async (req, res, next) => {
   const location = req.query.city
-  const limit = 5
+  const limit = LIMIT
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
@@ -147,7 +169,7 @@ touristicSitesController.searchHotel = async (req, res, next) => {
       limit: '1',
       sort: 'relevance',
       offset: '0',
-      lang: 'es_MX',
+      lang: 'en_EN',
       currency: 'USD',
       units: 'km',
       query: location
@@ -158,56 +180,64 @@ touristicSitesController.searchHotel = async (req, res, next) => {
     }
   }
   request(option, function (error, response, body) {
-    if (error) throw new Error(error)
-    const data = JSON.parse(body)
-    const locationId = data.data[0].result_object.location_id
+    try {
+      const data = JSON.parse(body)
+      const locationId = data.data[0].result_object.location_id
+      const today = new Date()
+      const day = today.getDate() + 2
+      const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
+      const year = today.getFullYear()
+      const date = `${year}-${month}-${day}`
 
-    const today = new Date()
-    const day = today.getDate() + 2
-    const month = today.getMonth() + 1 // +1 porque los meses empiezan en 0
-    const year = today.getFullYear()
-    const date = `${year}-${month}-${day}`
-
-    const locationHotel = {
-      method: 'GET',
-      url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
-      qs: {
-        location_id: locationId,
-        pricesmin: '',
-        offset: '0',
-        pricesmax: '',
-        currency: 'USD',
-        limit: limit,
-        order: 'asc',
-        lang: 'es_CO',
-        sort: 'recommended',
-        checkin: date,
-        adults: '1',
-        rooms: '1',
-        nights: '1'
-      },
-      headers: {
-        'x-rapidapi-host': config.tripAdvisorHost,
-        'x-rapidapi-key': config.tripAdvisorKey,
-
+      const locationHotel = {
+        method: 'GET',
+        url: 'https://tripadvisor1.p.rapidapi.com/hotels/list',
+        qs: {
+          location_id: locationId,
+          pricesmin: '',
+          offset: '0',
+          pricesmax: '',
+          currency: 'USD',
+          limit: limit,
+          order: 'asc',
+          lang: 'es_ES',
+          sort: 'recommended',
+          checkin: date,
+          adults: '1',
+          rooms: '1',
+          nights: '1'
+        },
+        headers: {
+          'x-rapidapi-host': config.tripAdvisorHost,
+          'x-rapidapi-key': config.tripAdvisorKey
+        }
       }
-    }
-
-    request(locationHotel, function (error, response, body) {
-      if (error) throw new Error(error)
-      const dataHotel = JSON.parse(body)
-
-      res.json({
-        locationId: locationId,
-        dataHotel: dataHotel
+      request(locationHotel, function (error, response, body) {
+        try {
+          const dataHotel = JSON.parse(body)
+          const formattedData = formatDataTripAdvisor(dataHotel.data, ['Hotel'])
+          res.json({
+            count: formattedData.length,
+            body: formattedData
+          })
+        } catch (error) {
+          console.log(error)
+        }
       })
-    })
+    } catch (error) {
+      console.error(error)
+      res.json({
+        status: 500,
+        message: 'There is an error',
+        body: []
+      })
+    }
   })
 }
 
 touristicSitesController.searchRestaurant = async (req, res, next) => {
   const location = req.query.city
-  const limit = 3
+  const limit = LIMIT
   const option = {
     method: 'GET',
     url: 'https://tripadvisor1.p.rapidapi.com/locations/search',
@@ -227,37 +257,91 @@ touristicSitesController.searchRestaurant = async (req, res, next) => {
     }
   }
   request(option, function (error, response, body) {
-    if (error) throw new Error(error)
-    const data = JSON.parse(body)
-    const locationId = data.data[0].result_object.location_id
-
-    const locationRestaurants = {
-      method: 'GET',
-      url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
-      qs: {
-        restaurant_tagcategory_standalone: '',
-        lunit: 'km',
-        restaurant_tagcategory: '',
-        limit: limit,
-        currency: 'USD',
-        lang: 'es_CO',
-        location_id: locationId
-      },
-      headers: {
-        'x-rapidapi-host': config.tripAdvisorHost,
-        'x-rapidapi-key': config.tripAdvisorKey
-
+    try {
+      const data = JSON.parse(body)
+      const locationId = data.data[0].result_object.location_id
+      const locationRestaurants = {
+        method: 'GET',
+        url: 'https://tripadvisor1.p.rapidapi.com/restaurants/list',
+        qs: {
+          restaurant_tagcategory_standalone: '',
+          lunit: 'km',
+          restaurant_tagcategory: '',
+          limit: limit,
+          currency: 'USD',
+          lang: 'es_ES',
+          location_id: locationId
+        },
+        headers: {
+          'x-rapidapi-host': config.tripAdvisorHost,
+          'x-rapidapi-key': config.tripAdvisorKey
+        }
       }
-    }
-    request(locationRestaurants, function (error, response, body) {
-      if (error) throw new Error(error)
-      var dataRestaurants = JSON.parse(body)
-
-      res.json({
-        locationId: locationId,
-        dataRestaurants: dataRestaurants
+      request(locationRestaurants, function (error, response, body) {
+        try {
+          var dataRestaurants = JSON.parse(body)
+          const formattedData = formatDataTripAdvisor(dataRestaurants.data, ['Restaurante'])
+          res.json({
+            count: formattedData.length,
+            body: formattedData
+          })
+        } catch (error) {
+          console.error(error)
+        }
       })
-    })
+    } catch (error) {
+      console.error(error)
+      res.json({
+        status: 500,
+        message: 'There is an error',
+        body: []
+      })
+    }
+  })
+}
+
+touristicSitesController.recommendations = async (req, res) => {
+  const {city, budget, categories} = req.query;
+
+  const sites = await TouristicSites.find({
+    categories: { $in: categories},
+    $or: [{ city: { $regex: city, $options: 'i'}}]
+  })
+
+  let results = sites.map((site) => {
+    let weight = 25;
+
+    weight += Math.floor(site.rating) * 5
+
+    const priceDiff = Math.abs(budget - Number(site.average_price));
+
+    if(priceDiff <= budget) {
+      weight += 25;
+    } else if (priceDiff < budget*0.10) {
+      weight += 20;
+    } else if (priceDiff < budget*0.20) {
+      weight += 15;
+    } else if (priceDiff < budget*0.30) {
+      weight += 10;
+    } else if (priceDiff < budget*0.40) {
+      weight += 5;
+    } else {
+      weight += 0;
+    }
+
+    const intersection = site.categories.filter(x => categories.includes(x));
+    const singleValue = categories.length ? 25/categories.length : 0;
+    weight += singleValue * intersection.length;
+    weight = Number(weight.toFixed(2))
+
+    return {...site._doc, weight};
+  })
+
+  results = results.sort((r1, r2) => r2.weight - r1.weight).slice(0, 5)
+
+  res.json({
+    count: results.length,
+    body: results
   })
 }
 

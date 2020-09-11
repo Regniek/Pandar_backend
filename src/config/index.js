@@ -11,5 +11,5 @@ const config = {
   tripAdvisorHost: process.env.TRIP_ADVISOR_HOST,
   tripAdvisorKey: process.env.TRIP_ADVISOR_KEY
 }
- 
+
 module.exports = { config }
