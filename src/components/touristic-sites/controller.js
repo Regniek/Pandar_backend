@@ -124,6 +124,7 @@ touristicSitesController.deleteSite = async (req, res, next) => {
 touristicSitesController.searchByCategories = async (req, res, next) => {
   try {
     const city = req.query.city
+    console.log(req.query.categories)
     if (req.query.categories === null || !req.query.categories) {
       city.replace(/[á,a,e,é,i,í,o,ó,ö,u,ú,ü]/g, '[-\'0-9a-zÀ-ÿ]')
       const sites = await TouristicSites.find({
@@ -133,10 +134,10 @@ touristicSitesController.searchByCategories = async (req, res, next) => {
         count: sites.length,
         body: sites
       })
-    } else if (req.query.categories === 'Hoteles' || req.query.categories === 'hoteles') {
+    } else if (req.query.categories[0] === 'Hoteles' || req.query.categories[0] === 'hoteles') {
       city.replace(' ', '%20')
       touristicSitesController.searchHotel(req, res)
-    } else if (req.query.categories === 'Restaurantes' || req.query.categories === 'restaurantes') {
+    } else if (req.query.categories[0] === 'Restaurantes' || req.query.categories[0] === 'restaurantes') {
       city.replace(' ', '%20')
       touristicSitesController.searchRestaurant(req, res)
     } else {
