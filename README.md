@@ -58,10 +58,10 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 #### Search-Site
 ##### • GET Search-Site
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
-- Categorias: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
-- Ejemplo: `http://localhost:4000/search-site?city=aguascalientes&categories=cultura`
-- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories=cultura`
+- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<categoria>`
+- Categorias: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`,`Bares y Discotecas`, `Playas`, `Aire Libre`.
+- Ejemplo: `http://localhost:4000/search-site?city=aguascalientes&categories[]=Cultura`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories[]=Cultura`
 
 > Response
 ```
@@ -77,7 +77,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -89,10 +89,10 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ##### • GET Search-Site (TripAdvisor)
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
+- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<categoria>`
 - Categorias: `Hoteles`, `Restaurantes`
-- Ejemplo: `http://localhost:4000/search-site?city=Medellin&categories=Hoteles`
-- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hoteles`
+- Ejemplo: `http://localhost:4000/search-site?city=Medellin&categories[]=Hoteles`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories[]=Hoteles`
 
 
 > Response
@@ -178,6 +178,65 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     ]
 }
 ```
+
+##### • GET Search-Site/Recommendations
+
+- URL: `http://localhost:4000/search-site/recommendations?city=<ciudad>&categories[]=<categoria>&<ciudad>&categories[]=<categoria>&budget=<presupuesto>`
+- Categorias: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`,`Bares y Discotecas`, `Playas`, `Aire Libre`.
+- Presupuesto: Valor númerico
+- Ejemplo: `http://localhost:4000/ search-site/recommendations/?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
+- Ejemplo API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site/recommendations?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
+
+> Response
+```
+{
+  "count": 2,
+  "body": [
+    {
+      "categories": [
+        "Cultura"
+      ],
+      "_id": "5f4c2540d0553c080c79634d",
+      "location_name": "Museo Nacional de la Muerte",
+      "country": "México",
+      "city": "Aguascalientes",
+      "latitude": "21.883992",
+      "length": "-102.295501",
+      "rating": 4.5,
+      "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
+      "average_price": "20",
+      "phone": "+524499107400",
+      "web": "http://museonacionaldelamuerte.uaa.mx/",
+      "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
+      "createdAt": "2020-08-30T22:16:32.673Z",
+      "updatedAt": "2020-08-30T22:18:03.428Z",
+      "__v": 0,
+      "weight": 82.5
+    },
+    {
+      "categories": [
+        "Compras"
+      ],
+      "_id": "5f57a7e493caa8025460bf98",
+      "location_name": "Centro Comercial Villasunción",
+      "country": "México",
+      "city": "Aguascalientes",
+      "latitude": "21.850834",
+      "length": "-102.293114",
+      "rating": 4.4,
+      "address": "Blvd. José María Chávez s/n, Centro Comercial Villa Asunción, 20280 Aguascalientes, Ags., México",
+      "average_price": "0",
+      "phone": "+524493009160",
+      "web": "http://villasuncion.com/",
+      "image": "https://lh5.googleusercontent.com/p/AF1QipMtL_6fnRlNwjsU0P0RN9i6hy7QnZ8SmxHY2UFP=w426-h240-k-no",
+      "createdAt": "2020-09-08T15:48:52.822Z",
+      "updatedAt": "2020-09-08T15:48:52.822Z",
+      "__v": 0,
+      "weight": 82.5
+    }
+  ]
+```
+
 
 #### Login
 
@@ -270,7 +329,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     "length": "-117.050420",
     "rating": 4.6,
     "address": "Carretera Libre Tijuana, Ensenada KM28.5, Villas Corona, 22710 Rosarito, B.C., México",
-    "average_price": "$35",
+    "average_price": "35",
     "phone": "+526193564505",
     "web": "http://www.playaarcangel.com/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipPc-KkN_O5WAAmsPufbzfKHil8W0iKmszg4LU34=w426-h240-k-no",
@@ -290,7 +349,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     "length": "-117.061636",
     "rating": 4.6,
     "address": "Abeto 246, Centro Playas, 22710 Rosarito, B.C., México",
-    "average_price": "Gratis",
+    "average_price": "0",
     "phone": "",
     "web": "",
     "image": "https://lh5.googleusercontent.com/p/AF1QipNOexywzZayCAPmbz6eAWSP7TNCUEPX85Ijkrek=w408-h306-k-no",
@@ -320,7 +379,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -346,7 +405,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -373,7 +432,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
         "length": "-102.295501",
         "rating": 4.5,
         "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-        "average_price": "$20",
+        "average_price": "20",
         "phone": "+524499107400",
         "web": "http://museonacionaldelamuerte.uaa.mx/",
         "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -809,10 +868,10 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 #### Search-Site
 ##### • GET Search-Site
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
-- Categoriess: `Eventos`, `Cultura`, `Zonas arqueologicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Universidades`, `Bares y Discotecas`, `Playas`, `Al aire libre`, `Otros`.
-- Example: `http://localhost:4000/search-site?city=aguascalientes&categories=cultura`
-- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories=cultura`
+- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<category>`
+- Categoriess: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Bares y Discotecas`, `Playas`, `Aire Libre`.
+- Example: `http://localhost:4000/search-site?city=aguascalientes&categories[]=Cultura`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories[]=Cultura`
 
 > Response
 ```
@@ -828,7 +887,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -840,10 +899,10 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET Search-Site (TripAdvisor)
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories=<categoria>`
+- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<category>`
 - Categories: `Hoteles`, `Restaurantes`
-- Example: `http://localhost:4000/search-site?city=Medellin&categories=Hoteles`
-- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories=Hoteles`
+- Example: `http://localhost:4000/search-site?city=Medellin&categories[]=Hoteles`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories[]=Hoteles`
 
 
 > Response
@@ -929,6 +988,65 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     ]
 }
 ```
+
+##### • GET Search-Site/Recommendations
+
+- URL: `http://localhost:4000/search-site/recommendations?city=<ciudad>&categories[]=<category>&<ciudad>&categories[]=<category>&budget=<budget>`
+- Categories: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`,`Bares y Discotecas`, `Playas`, `Aire Libre`.
+- Budget: Valor númerico
+- Example: `http://localhost:4000/ search-site/recommendations/?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
+- Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site/recommendations?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
+
+> Response
+```
+{
+  "count": 2,
+  "body": [
+    {
+      "categories": [
+        "Cultura"
+      ],
+      "_id": "5f4c2540d0553c080c79634d",
+      "location_name": "Museo Nacional de la Muerte",
+      "country": "México",
+      "city": "Aguascalientes",
+      "latitude": "21.883992",
+      "length": "-102.295501",
+      "rating": 4.5,
+      "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
+      "average_price": "20",
+      "phone": "+524499107400",
+      "web": "http://museonacionaldelamuerte.uaa.mx/",
+      "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
+      "createdAt": "2020-08-30T22:16:32.673Z",
+      "updatedAt": "2020-08-30T22:18:03.428Z",
+      "__v": 0,
+      "weight": 82.5
+    },
+    {
+      "categories": [
+        "Compras"
+      ],
+      "_id": "5f57a7e493caa8025460bf98",
+      "location_name": "Centro Comercial Villasunción",
+      "country": "México",
+      "city": "Aguascalientes",
+      "latitude": "21.850834",
+      "length": "-102.293114",
+      "rating": 4.4,
+      "address": "Blvd. José María Chávez s/n, Centro Comercial Villa Asunción, 20280 Aguascalientes, Ags., México",
+      "average_price": "0",
+      "phone": "+524493009160",
+      "web": "http://villasuncion.com/",
+      "image": "https://lh5.googleusercontent.com/p/AF1QipMtL_6fnRlNwjsU0P0RN9i6hy7QnZ8SmxHY2UFP=w426-h240-k-no",
+      "createdAt": "2020-09-08T15:48:52.822Z",
+      "updatedAt": "2020-09-08T15:48:52.822Z",
+      "__v": 0,
+      "weight": 82.5
+    }
+  ]
+```
+
 
 #### Login
 
@@ -1021,7 +1139,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "length": "-117.050420",
     "rating": 4.6,
     "address": "Carretera Libre Tijuana, Ensenada KM28.5, Villas Corona, 22710 Rosarito, B.C., México",
-    "average_price": "$35",
+    "average_price": "35",
     "phone": "+526193564505",
     "web": "http://www.playaarcangel.com/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipPc-KkN_O5WAAmsPufbzfKHil8W0iKmszg4LU34=w426-h240-k-no",
@@ -1041,7 +1159,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "length": "-117.061636",
     "rating": 4.6,
     "address": "Abeto 246, Centro Playas, 22710 Rosarito, B.C., México",
-    "average_price": "Gratis",
+    "average_price": "0",
     "phone": "",
     "web": "",
     "image": "https://lh5.googleusercontent.com/p/AF1QipNOexywzZayCAPmbz6eAWSP7TNCUEPX85Ijkrek=w408-h306-k-no",
@@ -1053,7 +1171,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET One Touristic-Site
 
-- URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
+- URL: `http://localhost:4000/touristic-site/<touristic-site-id>`
 - Example: `http://localhost:4000/touristic-site/5f4c2540d0553c080c79634d`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f4c2540d0553c080c79634d`
 
@@ -1071,7 +1189,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -1097,7 +1215,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
     "length": "-102.295501",
     "rating": 4.5,
     "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-    "average_price": "$20",
+    "average_price": "20",
     "phone": "+524499107400",
     "web": "http://museonacionaldelamuerte.uaa.mx/",
     "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -1124,7 +1242,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
         "length": "-102.295501",
         "rating": 4.5,
         "address": "Rivero y Gutiérrez x, José María Morelos y Pavón, Zona Centro, 20000 Aguascalientes, Ags., México",
-        "average_price": "$20",
+        "average_price": "20",
         "phone": "+524499107400",
         "web": "http://museonacionaldelamuerte.uaa.mx/",
         "image": "https://lh5.googleusercontent.com/p/AF1QipMT8lLoVMEihj2Ps-8TR912yW4OECzFfy_Dy1C6=w408-h544-k-no",
@@ -1137,7 +1255,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • PATCH Touristic-Site
 
-- URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
+- URL: `http://localhost:4000/touristic-site/<touristic-site-id>`
 - Example: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
 - Authorization Token: Required
@@ -1162,7 +1280,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • DELETE Touristic-Site
 
-- URL: `http://localhost:4000/touristic-site/<_id del sitio turistico>`
+- URL: `http://localhost:4000/touristic-site/<touristic-site-id>`
 - Example: `http://localhost:4000/touristic-site/5f51b3684757c94650678303`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/touristic-site/5f51b3684757c94650678303`
 - Authorization Token: Required
@@ -1244,7 +1362,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET One Survey
 
-- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- URL: `http://localhost:4000/survey/<survey-id>`
 - Example: `http://localhost:4000/survey/5f5241fa89e724361cca0f27`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f5241fa89e724361cca0f27`
 
@@ -1319,7 +1437,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • PATCH Survey
 
-- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- URL: `http://localhost:4000/survey/<survey-id>`
 - Example: `http://localhost:4000/survey/5f51b3684757c94650678303`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
 - Authorization Token: Required
@@ -1343,7 +1461,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • DELETE Survey
 
-- URL: `http://localhost:4000/survey/<_id del cuestionario>`
+- URL: `http://localhost:4000/survey/<survey-id>`
 - Example: `http://localhost:4000/survey/5f5240ef89e724361cca0f26`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/survey/5f51b3684757c94650678303`
 - Authorization Token: Required
@@ -1401,7 +1519,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET One User
 
-- URL: `http://localhost:4000/user/<_id del usuario>`
+- URL: `http://localhost:4000/user/<user-id>`
 - Example: `http://localhost:4000/user/5f3a001e747bf745042b59b7`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f3a001e747bf745042b59b7`
 
@@ -1466,7 +1584,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • PATCH User #####
 
-- URL: `http://localhost:4000/user/< _id del usuario >`
+- URL: `http://localhost:4000/user/<user-id>`
 - Example: `http://localhost:4000/user/5f5246a589e724361cca0f29`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
 - Authorization Token: Required
@@ -1494,7 +1612,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • DELETE User
 
-- URL: `http://localhost:4000/user/<_id del usuario>`
+- URL: `http://localhost:4000/user/<user-id>`
 - Example: `http://localhost:4000/user/5f5246a589e724361cca0f29`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/user/5f5246a589e724361cca0f29`
 - Authorization Token: Required
