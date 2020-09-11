@@ -181,7 +181,7 @@ Estructura de fondo del proyecto sistema inteligente para turistas (Pandar) que 
 
 ##### • GET Search-Site/Recommendations
 
-- URL: `http://localhost:4000/search-site/recommendations?city=<ciudad>&categories[]=<categoria>&<ciudad>&categories[]=<categoria>&budget=<presupuesto>`
+- URL: `http://localhost:4000/search-site/recommendations?city=<ciudad>&categories[]=<categoria>&categories[]=<categoria>&budget=<presupuesto>`
 - Categorias: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`,`Bares y Discotecas`, `Playas`, `Aire Libre`.
 - Presupuesto: Valor númerico
 - Ejemplo: `http://localhost:4000/ search-site/recommendations/?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
@@ -868,7 +868,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 #### Search-Site
 ##### • GET Search-Site
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<category>`
+- URL: `http://localhost:4000/search-site?city=<city>&categories[]=<category>`
 - Categoriess: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`, `Bares y Discotecas`, `Playas`, `Aire Libre`.
 - Example: `http://localhost:4000/search-site?city=aguascalientes&categories[]=Cultura`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=aguascalientes&categories[]=Cultura`
@@ -899,7 +899,7 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET Search-Site (TripAdvisor)
 
-- URL: `http://localhost:4000/search-site?city=<ciudad>&categories[]=<category>`
+- URL: `http://localhost:4000/search-site?city=<city>&categories[]=<category>`
 - Categories: `Hoteles`, `Restaurantes`
 - Example: `http://localhost:4000/search-site?city=Medellin&categories[]=Hoteles`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site?city=Medellin&categories[]=Hoteles`
@@ -991,9 +991,9 @@ Background structure of the project intelligent system for tourists (Pandar) tha
 
 ##### • GET Search-Site/Recommendations
 
-- URL: `http://localhost:4000/search-site/recommendations?city=<ciudad>&categories[]=<category>&<ciudad>&categories[]=<category>&budget=<budget>`
+- URL: `http://localhost:4000/search-site/recommendations?city=<city>&categories[]=<category>&categories[]=<category>&budget=<budget>`
 - Categories: `Eventos`, `Cultura`, `Zonas Arqueológicas`, `Parques Tematicos`, `Ecoturismo`, `Sitios Religiosos`, `Arquitectura`, `Compras`,`Bares y Discotecas`, `Playas`, `Aire Libre`.
-- Budget: Valor númerico
+- Budget: Numeric value
 - Example: `http://localhost:4000/ search-site/recommendations/?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
 - Example API Backend: `https://backend-intellegent-tourism-system.vercel.app/search-site/recommendations?city=aguascalientes&categories[]=Cultura&categories[]=Compras&budget=500`
 
