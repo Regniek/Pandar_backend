@@ -312,7 +312,7 @@ touristicSitesController.recommendations = async (req, res) => {
 
     weight += Math.floor(site.rating) * 5
 
-    const priceDiff = Math.abs(budget - Number(site.average_price.substring(1).trim()));
+    const priceDiff = Math.abs(budget - Number(site.average_price));
 
     if(priceDiff <= budget) {
       weight += 25;
